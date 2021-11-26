@@ -1,9 +1,5 @@
 ﻿using MediatR;
 using Presentismo.Application.Common.Wrappers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday.InitWorkdayContract;
