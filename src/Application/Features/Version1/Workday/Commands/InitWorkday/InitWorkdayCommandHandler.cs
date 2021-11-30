@@ -11,7 +11,7 @@ using static Presentismo.Application.Features.Version1.Workday.Commands.InitWork
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday
 {
-    public class InitWorkdayCommandHandler : IRequestHandler<Command, ApiResponse<Response>>
+    public class InitWorkdayCommandHandler : IRequestHandler<InitCommand, ApiResponse<InitResponse>>
     {
         private IPresentismoService _presentismoServices;
 
@@ -20,18 +20,19 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday
             _presentismoServices = presentismoServices;
         }
 
-        public Task<ApiResponse<Response>> Handle(Command request, CancellationToken cancellationToken)
+        public Task<ApiResponse<InitResponse>> Handle(InitCommand request, CancellationToken cancellationToken)
         {
             var result = _presentismoServices.InitWorkDay(request);
 
-            return Task.FromResult(new ApiResponse<Response>
+            return Task.FromResult(new ApiResponse<InitResponse>
             {
                 data = result.Result.data,
+                code = result.Result.code,
                 fecha = result.Result.fecha,
                 message = result.Result.message,
-                usuario = result.Result.usuario,
-                code = result.Result.code,
-                messageid = result.Result.messageid
+                messageid = result.Result.messageid,
+                usuario = result.Result.usuario
+                
             });
         }
     }
