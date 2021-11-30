@@ -12,11 +12,15 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday
     {
         public class Command : IRequest<ApiResponse<Response>>
         {
-
+            public ApiResponse<Response> res { get; set; }
         }
 
         public class Response
         {
+            public string usuario { get; set; }
+            public string hora { get; set; }
+            public int idLugarTrabajo { get; set; }
+            public int idTipoHora { get; set; }
         }
     }
 }

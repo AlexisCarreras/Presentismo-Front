@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Presentismo.Application;
+using Presentismo.Application.Services;
+using System;
 
 namespace webapp
 {
@@ -21,6 +23,14 @@ namespace webapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient("PresentismoClient", client =>
+            {
+                client.BaseAddress = new Uri("http://presentismocda.herokuapp.com");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
+
+            services.AddTransient<IPresentismoService, PresentismoService>();
+
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory

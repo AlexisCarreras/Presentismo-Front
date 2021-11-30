@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 
 namespace Presentismo.Application.Common.Wrappers
 {
-    public class ApiResponse<T>
+    public class ApiResponse<Response>
     {
-        public T Data { get; set; }
-        public string User { get; set; }
-        public DateTime Date { get; set; }
-        public string Message { get; set; }
-        public static ApiResponse<T> Create()
-        {
-            return new ApiResponse<T>()
-            {
-                Date = DateTime.Now,
-                User = Guid.NewGuid().ToString()
-            };
-        }
+        public string usuario { get; set; }
+        public string fecha { get; set; }
+        public string messageid { get; set; }
+        public Response data { get; set; }
+        public string message { get; set; }
+        public string code { get; set; }
     }
 }
