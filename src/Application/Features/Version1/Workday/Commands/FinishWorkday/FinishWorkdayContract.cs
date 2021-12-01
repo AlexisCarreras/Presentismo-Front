@@ -10,17 +10,23 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkd
 {
     public abstract class FinishWorkdayContract
     {
-        public class FinishCommand : IRequest<ApiResponse<FinishResponse>>
+        public class FinishCommand : Command, IRequest<ApiResponse<FinishResponse>>
         {
-            public ApiResponse<FinishResponse> res { get; set; }
+            public DataFinish data { get; set; }
+        }
+
+        public class DataFinish
+        {
+            public string usuario { get; set; }
+            public string hora { get; set; }
         }
 
         public class FinishResponse
         {
-            public string idRegsitro { get; set; }
+            public int idRegsitro { get; set; }
             public string usuario { get; set; }
-            public string inicio { get; set; }
-            public string fin { get; set; }
+            public DateTime inicio { get; set; }
+            public DateTime fin { get; set; }
             public string lugarTrabajo { get; set; }
             public string tipoHora { get; set; }
             public string horas { get; set; }

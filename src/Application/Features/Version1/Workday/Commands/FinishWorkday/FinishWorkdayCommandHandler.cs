@@ -25,6 +25,11 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkd
             return Task.FromResult(new ApiResponse<FinishResponse>
             {
                 usuario = result.Result.usuario,
+                fecha = result.Result.fecha,
+                messageid = result.Result.messageid,
+                data = result.Result.data,
+                code = result.Result.code,
+                message = result.Result.message
 
             });
         }

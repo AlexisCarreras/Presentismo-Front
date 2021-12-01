@@ -1,4 +1,5 @@
 ﻿using Presentismo.Application.Common.Wrappers;
+using Presentismo.Application.Features.Version1.Workday.Commands;
 using Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkday;
 using Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday;
 using System;
@@ -22,15 +23,17 @@ namespace Presentismo.Application.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-        private string Conexion(string uri, InitCommand c)
+        private string Conexion(string uri, Command c)
         {
             var client = _httpClientFactory.CreateClient("PresentismoClient");
-            var payload = JsonSerializer.Serialize(c);
+            var payload = JsonSerializer.Serialize(c, c.GetType(), new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
             var result = client.PostAsync(uri, new StringContent(payload, Encoding.UTF8, "application/json")).Result;
 
-            var status = (int)result.StatusCode;
             var r = result.Content.ReadAsStringAsync().Result;
-            return result.Content.ReadAsStringAsync().Result;
+            return r;
         }
 
         public async Task<ApiResponse<InitResponse>> InitWorkDay(InitCommand c)
@@ -41,9 +44,12 @@ namespace Presentismo.Application.Services
             return responseInitWorkDay;
         }
 
-        public Task<ApiResponse<FinishResponse>> FinishWorkDay(FinishCommand request)
+        public async Task<ApiResponse<FinishResponse>> FinishWorkDay(FinishCommand c)
         {
-            throw new NotImplementedException();
+            string uri = "/finalizarDia";
+            var responseJson = Conexion(uri, c);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<FinishResponse>>(responseJson);
+            return responseFinishWorkDay;
         }
     }
 }
