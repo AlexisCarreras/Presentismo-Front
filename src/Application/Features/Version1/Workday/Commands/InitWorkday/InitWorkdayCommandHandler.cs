@@ -32,7 +32,7 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday
                 message = result.Result.message,
                 messageid = result.Result.messageid,
                 usuario = result.Result.usuario
-                
+
             });
         }
     }

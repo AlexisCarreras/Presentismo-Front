@@ -2,6 +2,8 @@
 using Presentismo.Application.Features.Version1.Workday.Commands;
 using Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkday;
 using Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday;
+using Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday;
+using Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +11,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkday.FinishWorkdayContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday.InitWorkdayContract;
+using static Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday.PauseWorkdayContract;
+using static Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday.RestartWorkdayContract;
 
 namespace Presentismo.Application.Services
 {
@@ -49,6 +54,28 @@ namespace Presentismo.Application.Services
             string uri = "/finalizarDia";
             var responseJson = Conexion(uri, c);
             var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<FinishResponse>>(responseJson);
+            return responseFinishWorkDay;
+        }
+
+        public async Task<ApiResponse<PauseResponse[]>> PauseWorkDay(PauseCommand c)
+        {
+            string uri = "/pausar";
+            var responseJson = Conexion(uri, c);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<PauseResponse[]>>(responseJson, new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            });
+            return responseFinishWorkDay;
+        }
+
+        public async Task<ApiResponse<RestartResponse[]>> RestartWorkDay(RestartCommand c)
+        {
+            string uri = "/reiniciar";
+            var responseJson = Conexion(uri, c);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<RestartResponse[]>>(responseJson, new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            });
             return responseFinishWorkDay;
         }
     }

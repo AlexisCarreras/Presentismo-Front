@@ -1,21 +1,33 @@
 ﻿using MediatR;
 using Presentismo.Application.Common.Wrappers;
+using Presentismo.Application.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Presentismo.Application.Features.Version1.Workday.Commands.InitWorkday.InitWorkdayContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday.PauseWorkdayContract;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday
 {
     public class PauseWorkdayCommandHandler : IRequestHandler<PauseCommand, ApiResponse<PauseResponse[]>>
     {
+        private IPresentismoService _presentismoServices;
+
+        public PauseWorkdayCommandHandler(IPresentismoService presentismoServices)
+        {
+            _presentismoServices = presentismoServices;
+        }
         public Task<ApiResponse<PauseResponse[]>> Handle(PauseCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = _presentismoServices.PauseWorkDay(request);
+            return Task.FromResult(new ApiResponse<PauseResponse[]>
+            {
+                data = result.Result.data,
+                code = result.Result.code,
+                fecha = result.Result.fecha,
+                message = result.Result.message,
+                messageid = result.Result.messageid,
+                usuario = result.Result.usuario
+            });
         }
     }
 }

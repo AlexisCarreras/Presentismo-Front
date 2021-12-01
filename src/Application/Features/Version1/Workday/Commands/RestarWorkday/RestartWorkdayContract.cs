@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday
+namespace Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday
 {
-    public abstract class PauseWorkdayContract
+    public abstract class RestartWorkdayContract
     {
-        public class PauseCommand : Command, IRequest<ApiResponse<PauseResponse[]>>
+        public class RestartCommand : Command, IRequest<ApiResponse<RestartResponse[]>>
         {
-            public DataPause data { get; set; }
+            public DataRestart data { get; set; }
         }
 
-        public class DataPause
+        public class DataRestart
         {
             public string usuario { get; set; }
             public string hora { get; set; }
@@ -23,12 +23,12 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkda
             public int idTipoHora { get; set; }
         }
 
-        public class PauseResponse
+        public class RestartResponse
         {
             public int idRegsitro { get; set; }
             public string usuario { get; set; }
-            public DateTime ? inicio { get; set; }
-            public DateTime ? fin { get; set;  }
+            public DateTime? inicio { get; set; }
+            public DateTime? fin { get; set; }
             public string lugarTrabajo { get; set; }
             public string tipoHora { get; set; }
             public string horas { get; set; }
