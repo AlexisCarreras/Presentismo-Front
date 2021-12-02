@@ -2,16 +2,16 @@
 using Presentismo.Application.Common.Wrappers;
 using System;
 
-namespace Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday
+namespace Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday
 {
-    public abstract class PauseWorkdayContract
+    public abstract class RestartWorkdayContract
     {
-        public class PauseCommand : Command, IRequest<ApiResponse<Response[]>>
+        public class RestartCommand : Command, IRequest<ApiResponse<Response[]>>
         {
-            public DataPause data { get; set; }
+            public DataRestart data { get; set; }
         }
 
-        public class DataPause
+        public class DataRestart
         {
             public string usuario { get; set; }
             public string hora { get; set; }

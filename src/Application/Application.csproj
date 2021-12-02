@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Version1\Workday\Queries\" />
+    <Folder Include="Features\Version1\Workday\Queries\HourType\" />
+    <Folder Include="Features\Version1\Workday\Queries\Workplaces\" />
   </ItemGroup>
 
 </Project>
