@@ -15,9 +15,9 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.RegisterOfH
         {
             _presentismoServices = presentismoServices;
         }
-        public Task<ApiResponse<Response[]>> Handle(RegisterOfHoursCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<Response[]>> Handle(RegisterOfHoursCommand request, CancellationToken cancellationToken)
         {
-            return _presentismoServices.RegisterOfHours(request);
+            return await _presentismoServices.RegisterOfHours(request);
         }
     }
 }

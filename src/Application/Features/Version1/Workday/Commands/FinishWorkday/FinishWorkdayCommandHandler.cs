@@ -15,9 +15,9 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkd
         {
             _presentismoServices = presentismoServices;
         }
-        public Task<ApiResponse<Response>> Handle(FinishCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<Response>> Handle(FinishCommand request, CancellationToken cancellationToken)
         {
-            return _presentismoServices.FinishWorkDay(request);
+            return await _presentismoServices.FinishWorkDay(request);
         }
     }
 }

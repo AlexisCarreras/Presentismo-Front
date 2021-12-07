@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Presentismo.Application.Common.Wrappers;
+using System;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands
 {
