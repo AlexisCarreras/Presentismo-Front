@@ -1,16 +1,20 @@
 ﻿using Presentismo.Application.Common.Wrappers;
 using Presentismo.Application.Features.Version1.Workday.Commands;
+using Presentismo.Application.Features.Version1.Workday.Commands.CurrentState;
+using Presentismo.Application.Features.Version1.Workday.Commands.WorkingHours;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static Presentismo.Application.Features.Version1.Workday.Commands.CurrentState.CurrentStateContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkday.FinishWorkdayContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.HourType.HourTypeContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday.PauseWorkdayContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.RegisterOfHours.RegisterOfHoursContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday.RestartWorkdayContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.StartWorkday.StartWorkdayContract;
+using static Presentismo.Application.Features.Version1.Workday.Commands.WorkingHours.WorkingHoursContract;
 using static Presentismo.Application.Features.Version1.Workday.Commands.Workplaces.WorkplacesContract;
 
 namespace Presentismo.Application.Services
@@ -112,6 +116,28 @@ namespace Presentismo.Application.Services
             string uri = "/lugarTrabajo";
             var responseJson = Conexion(uri, c);
             var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<WorkplacesResponse[]>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return responseFinishWorkDay;
+        }
+
+        public async Task<ApiResponse<CurrentStateResponse>> CurrentState(CurrentStateCommand c)
+        {
+            string uri = "/status";
+            var responseJson = Conexion(uri, c);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<CurrentStateResponse>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return responseFinishWorkDay;
+        }
+
+        public async Task<ApiResponse<WorkingHoursResponse>> WorkingHours(WorkingHoursCommand c)
+        {
+            string uri = "/HorasTrabajadas";
+            var responseJson = Conexion(uri, c);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<WorkingHoursResponse>>(responseJson, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });

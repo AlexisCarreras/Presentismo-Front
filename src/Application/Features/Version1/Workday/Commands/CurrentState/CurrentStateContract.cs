@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands.CurrentState
@@ -12,15 +13,25 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.CurrentStat
     {
         public class CurrentStateCommand : Command, IRequest<ApiResponse<CurrentStateResponse>>
         {
-            public CurrentStateResponse Data { get; set; }
+            public CurrentStateData Data { get; set; }
         }
         public class CurrentStateResponse
         {
-            public string HoraInicio { get; set; }
-            public string HoraFin { get; set; }
-            public string HorasTrabajadas { get; set; }
-            public string LugarTrabajo { get; set; }
-            public string Estado { get; set; }
+            [JsonPropertyName("horaInicio")]
+            public string BeginTime { get; set; }
+            [JsonPropertyName("horaFin")]
+            public string EndingTime { get; set; }
+            [JsonPropertyName("horasTrabajadas")]
+            public int WorkingHours { get; set; }
+            [JsonPropertyName("lugarTrabajo")]
+            public string Workplace { get; set; }
+            [JsonPropertyName("estado")]
+            public string State { get; set; }
+        }
+        public class CurrentStateData
+        {
+            public string User { get; set; }
+            public string Day { get; set; }
         }
     }
 

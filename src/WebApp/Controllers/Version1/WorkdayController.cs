@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Presentismo.Application.Features.Version1.Workday.Commands.CurrentState;
 using Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkday;
 using Presentismo.Application.Features.Version1.Workday.Commands.HourType;
 using Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkday;
 using Presentismo.Application.Features.Version1.Workday.Commands.RegisterOfHours;
 using Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkday;
 using Presentismo.Application.Features.Version1.Workday.Commands.StartWorkday;
+using Presentismo.Application.Features.Version1.Workday.Commands.WorkingHours;
 using Presentismo.Application.Features.Version1.Workday.Commands.Workplaces;
 using System.Threading.Tasks;
 
@@ -53,6 +55,20 @@ namespace WebApp.Controllers.Version1
 
         [HttpPost("Workplaces")]
         public async Task<IActionResult> Workplaces([FromBody] WorkplacesContract.WorkplacesCommand command)
+        {
+            var res = await Mediator.Send(command);
+            return Ok(res);
+        }
+
+        [HttpPost("CurrentState")]
+        public async Task<IActionResult> CurrentState([FromBody] CurrentStateContract.CurrentStateCommand command)
+        {
+            var res = await Mediator.Send(command);
+            return Ok(res);
+        }
+
+        [HttpPost("WorkingHours")]
+        public async Task<IActionResult> WorkingHours([FromBody] WorkingHoursContract.WorkingHoursCommand command)
         {
             var res = await Mediator.Send(command);
             return Ok(res);
