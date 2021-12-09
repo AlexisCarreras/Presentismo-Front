@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Presentismo.Application.Common.Wrappers;
+using System.Text.Json.Serialization;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands.Workplaces
 {
@@ -10,8 +11,9 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.Workplaces
         }
         public class WorkplacesResponse
         {
-            public int id { get; set; }
-            public string nombre { get; set; }
+            public int Id { get; set; }
+            [JsonPropertyName("nombre")]
+            public string Name { get; set; }
         }
     }
 }

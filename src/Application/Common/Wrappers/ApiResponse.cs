@@ -2,11 +2,21 @@
 {
     public class ApiResponse<T>
     {
-        public string usuario { get; set; }
-        public string fecha { get; set; }
-        public string messageid { get; set; }
-        public T data { get; set; }
-        public string message { get; set; }
-        public string code { get; set; }
+        public Header Header { get; set; }
+        public Info Info { get; set; }
+        public T Data { get; set; }
+    }
+
+    public class Info
+    {
+        public string Message { get; set; }
+        public string Code { get; set; }
+    }
+
+    public class Header
+    {
+        public string Consulter { get; set; }
+        public string Date { get; set; }
+        public string Messageid { get; set; }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using Presentismo.Application.Common.Wrappers;
 using Presentismo.Application.Features.Version1.Workday.Commands;
-using Presentismo.Application.Features.Version1.Workday.Commands.HourType;
-using Presentismo.Application.Features.Version1.Workday.Commands.RegisterOfHours;
-using Presentismo.Application.Features.Version1.Workday.Commands.Workplaces;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -31,7 +28,8 @@ namespace Presentismo.Application.Services
             var client = _httpClientFactory.CreateClient("PresentismoClient");
             var payload = JsonSerializer.Serialize(c, c.GetType(), new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
             var result = client.PostAsync(uri, new StringContent(payload, Encoding.UTF8, "application/json")).Result;
             result.EnsureSuccessStatusCode();
@@ -43,7 +41,11 @@ namespace Presentismo.Application.Services
         {
             string uri = "/inicio";
             var responseJson = Conexion(uri, c);
-            var responseInitWorkDay = JsonSerializer.Deserialize<ApiResponse<Response>>(responseJson);
+            var responseInitWorkDay = JsonSerializer.Deserialize<ApiResponse<Response>>(responseJson, new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
+            });
             return responseInitWorkDay;
         }
 
@@ -51,7 +53,10 @@ namespace Presentismo.Application.Services
         {
             string uri = "/finalizarDia";
             var responseJson = Conexion(uri, c);
-            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<Response>>(responseJson);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<Response>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
             return responseFinishWorkDay;
         }
 
@@ -61,7 +66,8 @@ namespace Presentismo.Application.Services
             var responseJson = Conexion(uri, c);
             var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<Response[]>>(responseJson, new JsonSerializerOptions
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
             });
             return responseFinishWorkDay;
         }
@@ -72,7 +78,8 @@ namespace Presentismo.Application.Services
             var responseJson = Conexion(uri, c);
             var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<Response[]>>(responseJson, new JsonSerializerOptions
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
             });
             return responseFinishWorkDay;
         }
@@ -83,7 +90,8 @@ namespace Presentismo.Application.Services
             var responseJson = Conexion(uri, c);
             var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<Response[]>>(responseJson, new JsonSerializerOptions
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
             });
             return responseFinishWorkDay;
         }
@@ -92,7 +100,10 @@ namespace Presentismo.Application.Services
         {
             string uri = "/tipoHora";
             var responseJson = Conexion(uri, c);
-            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<HourTypeResponse[]>>(responseJson);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<HourTypeResponse[]>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
             return responseFinishWorkDay;
         }
 
@@ -100,7 +111,10 @@ namespace Presentismo.Application.Services
         {
             string uri = "/lugarTrabajo";
             var responseJson = Conexion(uri, c);
-            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<WorkplacesResponse[]>>(responseJson);
+            var responseFinishWorkDay = JsonSerializer.Deserialize<ApiResponse<WorkplacesResponse[]>>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
             return responseFinishWorkDay;
         }
     }

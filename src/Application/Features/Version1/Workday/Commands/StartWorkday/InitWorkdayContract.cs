@@ -8,15 +8,14 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.StartWorkda
     {
         public class StartCommand : Command, IRequest<ApiResponse<Response>>
         {
-            public DataStart data { get; set; }
+            public DataStart Data { get; set; }
         }
 
         public class DataStart
         {
-            public string usuario { get; set; }
-            public string hora { get; set; }
-            public int idLugarTrabajo { get; set; }
-            public int idTipoHora { get; set; }
+            public string User { get; set; }
+            public string Hour { get; set; }
+            public int IdLugarTrabajo { get; set; }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Presentismo.Application.Common.Wrappers;
+using System.Text.Json.Serialization;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands.HourType
 {
@@ -10,9 +11,11 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.HourType
         }
         public class HourTypeResponse
         {
-            public int id { get; set; }
-            public string nombre { get; set; }
-            public string tipo { get; set; }
+            public int Id { get; set; }
+            [JsonPropertyName("nombre")]
+            public string Name { get; set; }
+            [JsonPropertyName("tipo")]
+            public string Type { get; set; }
         }
     }
 }

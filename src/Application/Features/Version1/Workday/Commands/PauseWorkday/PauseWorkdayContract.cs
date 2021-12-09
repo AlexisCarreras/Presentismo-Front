@@ -8,15 +8,14 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.PauseWorkda
     {
         public class PauseCommand : Command, IRequest<ApiResponse<Response[]>>
         {
-            public DataPause data { get; set; }
+            public DataPause Data { get; set; }
         }
 
         public class DataPause
         {
-            public string usuario { get; set; }
-            public string hora { get; set; }
-            public int idLugarTrabajo { get; set; }
-            public int idTipoHora { get; set; }
+            public string User { get; set; }
+            public string Hour { get; set; }
+            public int IdLugarTrabajo { get; set; }
         }
     }
 }

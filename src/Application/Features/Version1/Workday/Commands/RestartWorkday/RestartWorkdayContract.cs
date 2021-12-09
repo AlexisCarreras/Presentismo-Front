@@ -8,15 +8,14 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.RestarWorkd
     {
         public class RestartCommand : Command, IRequest<ApiResponse<Response[]>>
         {
-            public DataRestart data { get; set; }
+            public DataRestart Data { get; set; }
         }
 
         public class DataRestart
         {
-            public string usuario { get; set; }
-            public string hora { get; set; }
-            public int idLugarTrabajo { get; set; }
-            public int idTipoHora { get; set; }
+            public string User { get; set; }
+            public string Hour { get; set; }
+            public int IdLugarTrabajo { get; set; }
         }
     }
 }

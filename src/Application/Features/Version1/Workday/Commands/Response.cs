@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Presentismo.Application.Features.Version1.Workday.Commands
 {
     public class Response
     {
-        [JsonPropertyName("idregsitro")]
+        [JsonPropertyName("idRegsitro")]
         public int IdRegistro { get; set; }
-        public string usuario { get; set; }
-        public DateTime? inicio { get; set; }
-        public DateTime? fin { get; set; }
-        public string lugarTrabajo { get; set; }
-        public string tipoHora { get; set; }
-        public string horas { get; set; }
+        public string User { get; set; }
+        public DateTime? Begin { get; set; }
+        public DateTime? End { get; set; }
+        [JsonPropertyName("lugarTrabajo")]
+        public string Workplace { get; set; }
+        [JsonPropertyName("tipoHora")]
+        public string TypeOfHour { get; set; }
+        [JsonPropertyName("hour")]
+        public string Hours { get; set; }
     }
 }

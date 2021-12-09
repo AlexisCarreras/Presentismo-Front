@@ -8,13 +8,13 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.FinishWorkd
     {
         public class FinishCommand : Command, IRequest<ApiResponse<Response>>
         {
-            public DataFinish data { get; set; }
+            public DataFinish Data { get; set; }
         }
 
         public class DataFinish
         {
-            public string usuario { get; set; }
-            public string hora { get; set; }
+            public string User { get; set; }
+            public string Hour { get; set; }
         }
     }
 }
