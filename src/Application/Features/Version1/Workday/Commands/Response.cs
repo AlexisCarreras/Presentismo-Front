@@ -5,7 +5,6 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands
 {
     public class Response
     {
-        [JsonPropertyName("idRegsitro")]
         public int IdRegistro { get; set; }
         public string User { get; set; }
         public DateTime? Begin { get; set; }

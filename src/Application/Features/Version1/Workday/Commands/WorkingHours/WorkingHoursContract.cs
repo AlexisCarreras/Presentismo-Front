@@ -24,9 +24,7 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.WorkingHour
 
         public class WorkingHoursResponse
         {
-            [JsonPropertyName("horas")]
             public int Hours { get; set; }
-            [JsonPropertyName("minutos")]
             public int Minutes { get; set; }
         }
     }
