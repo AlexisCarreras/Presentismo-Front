@@ -1,7 +1,5 @@
 ﻿using Presentismo.Application.Common.Wrappers;
 using Presentismo.Application.Features.Version1.Workday.Commands;
-using Presentismo.Application.Features.Version1.Workday.Commands.CurrentState;
-using Presentismo.Application.Features.Version1.Workday.Commands.WorkingHours;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
