@@ -37,7 +37,7 @@ namespace Presentismo.Application.Services
             });
             var result = client.PostAsync(uri, new StringContent(payload, Encoding.UTF8, "application/json")).Result;
             result.EnsureSuccessStatusCode();
-            var r = result.Content.ReadAsStringAsync().Result;
+            var r = result.Content.ReadAsStringAsync().Result;            
             return r;
         }
 
