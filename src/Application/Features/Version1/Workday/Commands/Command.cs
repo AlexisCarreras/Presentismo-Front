@@ -20,7 +20,6 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands
     {
         public string Consulter { get; set; }
         public string Date { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        //[JsonPropertyName("messageid")]
         public string MessageId { get; set; } = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "X";
     }
 }
