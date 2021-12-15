@@ -1,4 +1,4 @@
-import   React, { useContext   } from 'react';
+import   React, { useContext, useEffect   } from 'react';
 import { makeStyles            } from '@material-ui/core';
 import   FormControl             from '@material-ui/core/FormControl';
 import   RadioGroup              from '@material-ui/core/RadioGroup';
@@ -6,7 +6,9 @@ import   Typography              from '@material-ui/core/Typography';
 import { RadioButtonsActivated } from '../../atoms/RadioButtons/RadioButtonsActivated';
 import { ValueContext          } from '../../../hooks/UseContext/ValueContext';
 import { useState              } from 'react';
-import { RadContext          } from '../../../hooks/UseContext/RadContext';
+import { RadContext            } from '../../../hooks/UseContext/RadContext';
+
+import   LugarTrabajo            from '../../../services/LugarTrabajo/lugarTrabajo';
 
 const useStyles = makeStyles({
     container: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles({
     },
 });
 
+// console.log(LugarTrabajo());
+
 export const RadioButtonsGroup = () => {
 
     const classes = useStyles();  
@@ -42,7 +46,36 @@ export const RadioButtonsGroup = () => {
  
     const { valuesRadio, setValuesRadio } = useContext(ValueContext); 
 
-  
+    const [ lugarTrabajo, setLugarTrabajo ] = useState<any>({
+        data: [{
+            id: "",
+            nombre: "",
+        },
+        {
+            id: "",
+            nombre: "",
+        },
+        {
+            id: "",
+            nombre: "",
+        }]
+    });
+
+    useEffect( () => { 
+        async function lugarTrabajo () {
+            const response: any =  await LugarTrabajo()
+            
+            if( response.status === 200 ){
+                setLugarTrabajo(response.data);
+            }
+        } 
+        lugarTrabajo();
+    }, []);
+    
+        const homeOffice = lugarTrabajo.data[0].nombre;
+        const Cliente    = lugarTrabajo.data[1].nombre;
+        const CDA        = lugarTrabajo.data[2].nombre;
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue((event.target as HTMLInputElement).value);
       if( valuesRadio === true ) {
@@ -64,15 +97,15 @@ export const RadioButtonsGroup = () => {
                 onChange={handleChange}
             >
                 <RadioButtonsActivated 
-                    value='Home Office'
+                    value= { homeOffice }
                     disabled={ disableRadio } 
                 />
                 <RadioButtonsActivated 
-                    value='Presencial CDA'
+                    value= { CDA }
                     disabled={ disableRadio } 
                 />
                 <RadioButtonsActivated 
-                    value='Cliente'
+                    value= { Cliente }
                     disabled={ disableRadio } 
                 />
             </RadioGroup>

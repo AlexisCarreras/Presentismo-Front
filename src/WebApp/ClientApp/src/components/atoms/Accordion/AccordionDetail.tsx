@@ -9,7 +9,6 @@ import   Typography            from '@material-ui/core/Typography';
 import   FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 interface data {
-    idRegsitro   : string;
     inicio       : string;
     lugarTrabajo : string;
 }
@@ -44,24 +43,25 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const AccordionDetail = ({ idRegsitro, inicio, lugarTrabajo }: data) => {
+export const AccordionDetail = ({ inicio, lugarTrabajo}: data) => {
 
     const classes = useStyles();
 
     return (
-        <Accordion >
-            <AccordionSummary
+        <Accordion>
+            <AccordionSummary 
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 className={ classes.root }
             >
                 <FiberManualRecordIcon className={ classes.icon } />
+    
                 <Typography className={classes.heading}>
-                    09: 00 
+                    { inicio.slice(11,-9) }
                 </Typography>
                 <Typography className={classes.secondaryHeading}> 
-                    Lugar de trabajo
+                    { lugarTrabajo }
                 </Typography>
             </AccordionSummary>
             <AccordionDetails className={ classes.containerDetails }>

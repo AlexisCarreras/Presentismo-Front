@@ -4,20 +4,20 @@ export default async function RegistroDeHoras() {
    
     try {
         const response = await axios({
-          url: 'https://presentismocda.herokuapp.com/registroHoras',
+          url: 'https://localhost:44323/api/Workday/Registerofhours',
           method: 'post', 
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
           data: { 
               header: {
-                consulter: 'fruiz',
+                consulter: 'Fruiz',
                 date: '2021-12-10 09:00:00',
                 messageid: '202111700900009992',
               },
               data: {
-                user: 'fruiz',
-                day: '2021-12-10'
+                user: 'Fruiz',
+                day: '2021-12-15'
               },
               info: {
                 message: '',

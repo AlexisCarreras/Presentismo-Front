@@ -31,14 +31,11 @@ export const Details = () => {
 
     const classes = useStyles();
 
-    const [registroHora, setRegistroHora] = useState<any>({});
-    
-    
+    const [registroHora, setRegistroHora] = useState<any>(null);
+
     useEffect( () => { 
-        //Manejar excepcion
         async function loadDetails () {
             const response: any =  await RegistroDeHoras()
-            // console.log(response.status);
             
             if( response.status === 200 ) {
                 setRegistroHora(response.data);
@@ -46,18 +43,11 @@ export const Details = () => {
             else {
                 setRegistroHora({});
             }
-            // console.log(response.data);
-            // console.log(registroHora);
-            // return response.data;
         } 
         loadDetails();
     }, []); 
     
-    // const fecha : string = String(registroHora.header.date);
-
-    const idRegsitro : string = String (registroHora.data);
-    const inicio : string = String (registroHora.inicio);
-    const lugarTrabajo : string = String (registroHora.lugarTrabajo);
+    const fecha        : string = ''; //String (registroHora.header.date);
     
     return (
         <div>
@@ -75,19 +65,19 @@ export const Details = () => {
                         variant='subtitle1' 
                         align='center' 
                     > 
-                        {/* { fecha.slice(0,-9) }  */}
-                        10 de Diciembre 2021
+                        { fecha.slice(0,-9) } 
                     </Typography> 
-
              
-                    <AccordionDetail 
-                        idRegsitro = { idRegsitro }
-                        inicio= { inicio }
-                        lugarTrabajo= { lugarTrabajo }
-                    />
-                    {/* <AccordionDetail />
-                    <AccordionDetail /> */}
- 
+                    {
+                        registroHora.data.map((a: any) =>
+                            <AccordionDetail 
+                                key={ a.idRegistro }
+                                inicio= { a.begin }
+                                lugarTrabajo= { a.lugarTrabajo }
+                            />
+                        )
+                        
+                    }
                 </Card>
             }
         </div>
