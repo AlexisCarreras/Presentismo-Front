@@ -18,8 +18,8 @@ export default async function IniciarDia() {
         },
         data: {
             user: 'Fruiz', 
-            hour: '2021-12-15 12:15:00.000',
-            idLugarTrabajo: 1,
+            hour: '2021-12-15 16:15:00.000',
+            idLugarTrabajo: 2,
           },
         //vuela todo info
         info: {

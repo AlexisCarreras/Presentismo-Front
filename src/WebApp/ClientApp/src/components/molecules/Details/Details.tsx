@@ -33,22 +33,54 @@ export const Details = () => {
 
     const [registroHora, setRegistroHora] = useState<any>(null);
 
+    const [isLoading, setLoading] = useState(true);
+
     useEffect( () => { 
         async function loadDetails () {
             const response: any =  await RegistroDeHoras()
             
             if( response.status === 200 ) {
                 setRegistroHora(response.data);
+                setLoading(false);
             }
             else {
                 setRegistroHora({});
             }
+
         } 
         loadDetails();
-    }, []); 
+    }, [registroHora]); 
     
-    const fecha        : string = ''; //String (registroHora.header.date);
+
+    const fecha = () => {
+
+        if(isLoading) {
+            return (
+                <Typography 
+                className={ classes.date } 
+                variant='subtitle1' 
+                align='center' 
+                > 
+                    ...
+                </Typography>
+            )
+        }
+        else {
+
+            const fecha : string = String (registroHora.header.date);
     
+            return (
+                <Typography 
+                className={ classes.date } 
+                variant='subtitle1' 
+                align='center' 
+                > 
+                    { fecha.slice(0,-9) }
+                </Typography>
+            ) 
+        }
+    }
+
     return (
         <div>
             {  
@@ -60,14 +92,9 @@ export const Details = () => {
                         disableTypography
                         title='Detalles'  
                     />
-                    <Typography 
-                        className={ classes.date } 
-                        variant='subtitle1' 
-                        align='center' 
-                    > 
-                        { fecha.slice(0,-9) } 
-                    </Typography> 
-             
+                    
+                    { fecha() }
+                            
                     {
                         registroHora.data.map((a: any) =>
                             <AccordionDetail 
@@ -76,7 +103,6 @@ export const Details = () => {
                                 lugarTrabajo= { a.lugarTrabajo }
                             />
                         )
-                        
                     }
                 </Card>
             }

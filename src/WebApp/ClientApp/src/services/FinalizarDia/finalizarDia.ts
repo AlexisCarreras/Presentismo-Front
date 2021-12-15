@@ -17,7 +17,7 @@ export default async function FinalizarDia() {
           },
           data: {
               user: 'Fruiz',
-              hour: '2021-12-15 12:30:00.000',
+              hour: '2021-12-15 16:30:00.000',
           }, 
           info: {
             message: '',

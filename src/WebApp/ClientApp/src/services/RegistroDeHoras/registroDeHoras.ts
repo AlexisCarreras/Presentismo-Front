@@ -25,7 +25,7 @@ export default async function RegistroDeHoras() {
               }
            }
         }) 
-        console.log(response);
+        // console.log(response);
         
         return response;
       }
