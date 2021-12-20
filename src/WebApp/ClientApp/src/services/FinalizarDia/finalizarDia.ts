@@ -1,5 +1,19 @@
 import axios from 'axios'; 
 
+const fecha = () => {
+
+  const hoy = new Date();
+
+  const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
+
+  const hora  = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds() + '.' + hoy.getMilliseconds();
+
+  console.log( "Finalizar: " + fecha + ' ' + hora );
+
+  return fecha + ' ' + hora;
+
+};
+
 export default async function FinalizarDia() {
 
     try {
@@ -16,8 +30,8 @@ export default async function FinalizarDia() {
             messageid: '202111700900009992',
           },
           data: {
-              user: 'Fruiz',
-              hour: '2021-12-15 16:30:00.000',
+              user: 'Jpedernera',
+              hour: fecha(),
           }, 
           info: {
             message: '',

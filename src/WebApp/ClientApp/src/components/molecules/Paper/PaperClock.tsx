@@ -10,7 +10,7 @@ import { ButtonProvider        } from '../../../context/ButtonProvider';
 import IniciarDia   from '../../../services/IniciarDia/iniciarDia';
 import FinalizarDia from '../../../services/FinalizarDia/finalizarDia';
 import PausarDia    from '../../../services/PausarDia/pausarDia';
-
+import Reiniciar    from '../../../services/Reiniciar/reiniciar';
 
 const useStyles = makeStyles({
     paperFunction: {
@@ -54,19 +54,20 @@ export const PaperClock = (  ) => {
  
     const handleClickStart = () => {
         if ( text ===  'Comenzar' ) {
+            IniciarDia();
             setText('Pausar');
             setValueFinish(!valueFinish);
-            IniciarDia();
         }
         else if ( text ===  'Pausar' ) { 
-            setText('Reanudar');
             PausarDia();
+            setText('Reanudar');
         }
         else if ( text ===  'Reanudar' ) {
+            Reiniciar();
+            console.log("reiniciar");
             setText('Pausar');
         }
     };
-    
 
     const handleClickFinish = () => {
         setText('Comenzar'); 

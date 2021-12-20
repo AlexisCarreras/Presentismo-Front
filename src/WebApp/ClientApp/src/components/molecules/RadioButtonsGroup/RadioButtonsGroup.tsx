@@ -33,8 +33,6 @@ const useStyles = makeStyles({
     },
 });
 
-// console.log(LugarTrabajo());
-
 export const RadioButtonsGroup = () => {
 
     const classes = useStyles();  
@@ -46,20 +44,7 @@ export const RadioButtonsGroup = () => {
  
     const { valuesRadio, setValuesRadio } = useContext(ValueContext); 
 
-    const [ lugarTrabajo, setLugarTrabajo ] = useState<any>({
-        data: [{
-            id: "",
-            nombre: "",
-        },
-        {
-            id: "",
-            nombre: "",
-        },
-        {
-            id: "",
-            nombre: "",
-        }]
-    });
+    const [ lugarTrabajo, setLugarTrabajo ] = useState<any>(null);
 
     useEffect( () => { 
         async function lugarTrabajo () {
@@ -71,10 +56,6 @@ export const RadioButtonsGroup = () => {
         } 
         lugarTrabajo();
     }, []);
-    
-        const homeOffice = lugarTrabajo.data[0].nombre;
-        const Cliente    = lugarTrabajo.data[1].nombre;
-        const CDA        = lugarTrabajo.data[2].nombre;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue((event.target as HTMLInputElement).value);
@@ -84,31 +65,35 @@ export const RadioButtonsGroup = () => {
     };
     // console.log(value);    
   
+    // console.log(lugarTrabajo.data);
+
     return (
-        <FormControl className={ classes.container } component="fieldset">
-            <Typography  className={ classes.text } variant="body1" >
-                Lugar de Trabajo:
-            </Typography>
-            <RadioGroup  
-                className={ classes.radioGroup }
-                aria-label="lugarTrabajo" 
-                name="lugarTrabajo" 
-                value={value} 
-                onChange={handleChange}
-            >
-                <RadioButtonsActivated 
-                    value= { homeOffice }
-                    disabled={ disableRadio } 
-                />
-                <RadioButtonsActivated 
-                    value= { CDA }
-                    disabled={ disableRadio } 
-                />
-                <RadioButtonsActivated 
-                    value= { Cliente }
-                    disabled={ disableRadio } 
-                />
-            </RadioGroup>
-        </FormControl>
+        <div>
+            {
+            lugarTrabajo &&
+                <FormControl className={ classes.container } component="fieldset">
+                    <Typography  className={ classes.text } variant="body1" >
+                        Lugar de Trabajo:
+                    </Typography>
+                    <RadioGroup  
+                        className={ classes.radioGroup }
+                        aria-label="lugarTrabajo" 
+                        name="lugarTrabajo" 
+                        value={value} 
+                        onChange={handleChange}
+                    >
+                        {
+                            lugarTrabajo.data.map((a: any) =>
+                                <RadioButtonsActivated 
+                                    key = { a.id }
+                                    value = { a.nombre }
+                                    disabled = { disableRadio } 
+                                />
+                            )
+                        }
+                    </RadioGroup>
+                </FormControl>
+            }
+        </div>
     )
 }

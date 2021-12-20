@@ -47,6 +47,8 @@ export const Details = () => {
                 setRegistroHora({});
             }
 
+            // console.log(response);
+
         } 
         loadDetails();
     }, [registroHora]); 

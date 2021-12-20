@@ -7,8 +7,10 @@ const useStyles = makeStyles({
         backgroundColor: '#FFFF',
         display: 'flex',
         height: '80px',
+        // height: '80%',
         marginTop: '2rem',
-        width: '1200px',
+        width: '1200px', 
+        // width: '180%',
     },
 });
 

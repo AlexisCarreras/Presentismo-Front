@@ -8,17 +8,17 @@ const fecha = () => {
 
   const hora  = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds() + '.' + hoy.getMilliseconds();
 
-  console.log( "Pausar: " + fecha + ' ' + hora );
+  console.log( "Reiniciar: " + fecha + ' ' + hora );
 
   return fecha + ' ' + hora;
 
 };
 
-export default async function PausarDia() {
+export default async function Reiniciar() {
 
   try {
     const response = await axios({
-      url: 'https://localhost:44323/api/Workday/pause',
+      url: 'https://localhost:44323/api/Workday/restart',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -26,14 +26,14 @@ export default async function PausarDia() {
       data: {
         header: {
           consulter: 'lmessi',
-          hour: '2021-12-02 09:00:00',
-          messageId: '202111700900009992',
+          date: '2021-12-17 09:00:00',
+          messageid: '202111700900009992',
         },
         data: {
             user: 'Jpedernera', 
             hour: fecha(),
-            idLugarTrabajo: 1,
-        },
+            idLugarTrabajo: 1, //Home= 1, Cliente=2, CDA= 3
+          },
         info: {
           message: '',
           code: ''
