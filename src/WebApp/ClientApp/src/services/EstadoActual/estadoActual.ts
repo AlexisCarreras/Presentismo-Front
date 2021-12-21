@@ -5,7 +5,6 @@ const fecha = () => {
     const hoy = new Date();
   
     const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
-    // console.log( "RegistroHoras: " + fecha );
   
     return fecha;
   
@@ -27,7 +26,7 @@ export default async function EstadoActual() {
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Jpedernera', 
+            user: 'Acarreras', 
             day: fecha(),
           },
         info: {

@@ -30,9 +30,9 @@ export default async function PausarDia() {
           messageId: '202111700900009992',
         },
         data: {
-            user: 'Jpedernera', 
+            user: 'Acarreras', 
             hour: fecha(),
-            idLugarTrabajo: 1,
+            idLugarTrabajo: 3,
         },
         info: {
           message: '',

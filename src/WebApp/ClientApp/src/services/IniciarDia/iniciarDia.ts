@@ -30,9 +30,9 @@ export default async function IniciarDia() {
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Jpedernera', 
+            user: 'Acarreras', 
             hour: fecha(),
-            idLugarTrabajo: 1, //Home= 1, Cliente=2, CDA= 3
+            idLugarTrabajo: 3, //Home= 1, Cliente=2, CDA= 3
             // idLugarTrabajo: {id},
           },
         info: {

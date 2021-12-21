@@ -11,6 +11,7 @@ import   FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 interface data {
     inicio       : string;
     lugarTrabajo : string;
+    tipoHora     : string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -43,36 +44,49 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const AccordionDetail = ({ inicio, lugarTrabajo}: data) => {
+export const AccordionDetail = ({ inicio, lugarTrabajo, tipoHora }: data) => {
 
     const classes = useStyles();
 
+    const detalleInicio = () => {
+
+        if ( tipoHora === "Productiva" ) {
+            return(
+                <Accordion>
+                    <AccordionSummary 
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        className={ classes.root }
+                    >
+                        <FiberManualRecordIcon className={ classes.icon } />
+            
+                        <Typography className={classes.heading}>
+                            { inicio.slice(11,-9) }
+                        </Typography>
+                        <Typography className={classes.secondaryHeading}> 
+                            { lugarTrabajo }
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className={ classes.containerDetails }>
+                        <Typography
+                            variant='body2'
+                            align='center' 
+                            className={ classes.details }
+                        >  
+                            Cliente/Tarea
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+        }
+    }
+
+    // console.log(tipoHora);
+ 
     return (
-        <Accordion>
-            <AccordionSummary 
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                className={ classes.root }
-            >
-                <FiberManualRecordIcon className={ classes.icon } />
-    
-                <Typography className={classes.heading}>
-                    { inicio.slice(11,-12) }
-                </Typography>
-                <Typography className={classes.secondaryHeading}> 
-                    { lugarTrabajo }
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails className={ classes.containerDetails }>
-                <Typography
-                    variant='body2'
-                    align='center' 
-                    className={ classes.details }
-                >  
-                    Cliente/Tarea
-                </Typography>
-            </AccordionDetails>
-        </Accordion>
+        <>
+            { detalleInicio() }
+        </>
     )
 }

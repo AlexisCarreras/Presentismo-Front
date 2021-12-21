@@ -11,6 +11,7 @@ import IniciarDia   from '../../../services/IniciarDia/iniciarDia';
 import FinalizarDia from '../../../services/FinalizarDia/finalizarDia';
 import PausarDia    from '../../../services/PausarDia/pausarDia';
 import Reiniciar    from '../../../services/Reiniciar/reiniciar';
+// import EstadoActual from '../../../services/EstadoActual/estadoActual';
 
 const useStyles = makeStyles({
     paperFunction: {
@@ -49,9 +50,37 @@ export const PaperClock = (  ) => {
     const [text, setText] = useState('Comenzar');
 
     const [valueFinish, setValueFinish] = useState(true);
-      
+    
     const { valuesRadio } = useContext( ValueContext ); 
+    
+    // REVISAR API DE ESTADO ACTUAL
+    // const [ estadoActual, setEstadoActual ] = useState<any>(null);
+
+    // const [isLoading, setLoading] = useState(true);
  
+    // useEffect( () => { 
+    //     async function estado () {
+    //         const response: any =  await EstadoActual()
+            
+    //         if( response.status === 200 ) {
+    //             setEstadoActual(response.data.data);
+    //             setLoading(false);
+    //         }
+    //         else {
+    //             setEstadoActual(null);
+    //         }
+            
+    //     } 
+    //     estado();
+    // }, []); 
+    
+    // if(isLoading === false){
+    //     if(estadoActual.estado === "INICIADO"){
+    //         console.log(estadoActual.estado);
+    //     }
+    // }
+
+    
     const handleClickStart = () => {
         if ( text ===  'Comenzar' ) {
             IniciarDia();

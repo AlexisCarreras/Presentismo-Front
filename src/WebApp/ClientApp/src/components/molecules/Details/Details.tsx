@@ -100,9 +100,10 @@ export const Details = () => {
                     {
                         registroHora.data.map((a: any) =>
                             <AccordionDetail 
-                                key={ a.idRegistro }
-                                inicio= { a.begin }
-                                lugarTrabajo= { a.lugarTrabajo }
+                                key ={ a.idRegistro }
+                                inicio = { a.begin }
+                                lugarTrabajo = { a.lugarTrabajo }
+                                tipoHora = { a.tipoHora }
                             />
                         )
                     }

@@ -1,24 +1,10 @@
 import axios from 'axios'; 
 
-const fecha = () => {
-
-  const hoy = new Date();
-
-  const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
-
-  const hora  = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds() + '.' + hoy.getMilliseconds();
-
-  console.log( "Finalizar: " + fecha + ' ' + hora );
-
-  return fecha + ' ' + hora;
-
-};
-
-export default async function FinalizarDia() {
+export default async function HorasTrabajadas() {
 
     try {
       const response = await axios({
-        url: 'https://localhost:44323/api/Workday/finish',
+        url: 'https://localhost:44323/api/Workday/WorkingHours',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -31,7 +17,8 @@ export default async function FinalizarDia() {
           },
           data: {
               user: 'Acarreras',
-              hour: fecha(),
+              begin: "2021-12-21 00:00:00.000",
+              end: "2021-12-21 23:59:00.000"
           }, 
           info: {
             message: '',
@@ -39,7 +26,8 @@ export default async function FinalizarDia() {
           }
         }
       }) 
-      console.log(response);
+
+      // console.log(response);
       
       return response;
     }

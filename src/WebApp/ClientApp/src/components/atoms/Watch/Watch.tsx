@@ -1,7 +1,8 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles          } from '@material-ui/core';
 import   Typography            from '@material-ui/core/Typography';
 import   Reloj                 from '../../atoms/Svg/clock.svg';
+import   HorasTrabajadas       from '../../../services/HorasTrabajadas/horasTrabajadas';
 
 const useStyles = makeStyles({
     root: {
@@ -36,33 +37,76 @@ export const Watch = () => {
 
     const classes = useStyles();
 
-    // const [countMinutes, setcountMinutes] = useState(0);
+    const [horasTrabajadas, setHorasTrabajadas] = useState<any>(null);
 
-    // useEffect(() => {
+    const [isLoading, setLoading] = useState(true);
 
-    //     const timer = setTimeout(() => {
-    //         setcountMinutes( countMinutes + 1 );
-    //     }, 1000);
+    useEffect( () => { 
+        async function horas () {
+            const response: any =  await HorasTrabajadas()
+            
+            if( response.status === 200 ) {
+                setHorasTrabajadas(response.data.data);
+                setLoading(false);
+            }
+            else {
+                setHorasTrabajadas({});
+            }
+            
+        } 
+        horas();
+    }, [horasTrabajadas]); 
 
-    //     return () => clearTimeout(timer);
-    //   }, [countMinutes]);
+    if(isLoading === false ) {
+        // console.log(horasTrabajadas);
+    }
+
+    const horas = () => {
+        if(isLoading) {
+            return (
+                <Typography className={ classes.counter } variant="h1" gutterBottom>
+                    00
+                </Typography>
+            )
+        }
+        else {
+            return (
+                <Typography className={ classes.counter } variant="h1" gutterBottom>
+                    { horasTrabajadas.hours }
+                </Typography>
+            ) 
+        }
+    }
+
+    const minutos = () => {
+        if(isLoading) {
+            return (
+                <Typography className={ classes.counter } variant="h1" gutterBottom>
+                    00
+                </Typography>
+            )
+        }
+        else {
+            return (
+                <Typography className={ classes.counter } variant="h1" gutterBottom>
+                    { horasTrabajadas.minutes }
+                </Typography>
+            ) 
+        }
+    }
 
     return ( 
         <section className={ classes.root }>
             <div className={ classes.container }>
                 <img src={ Reloj } alt='reloj' />
-                <Typography className={ classes.counter } variant="h1" gutterBottom>
-                    00
-                </Typography>
+                { horas() }
             </div>
             <Typography className={ classes.points } variant="h1" gutterBottom>
                 :
             </Typography>
             <div className={ classes.container }>
                 <img src={ Reloj } alt='reloj' />
-                <Typography className={ classes.counter } variant="h1" gutterBottom>
-                    00
-                </Typography>
+                { minutos() }
             </div>
             
         </section>
