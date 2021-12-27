@@ -24,8 +24,8 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.WorkingHour
 
         public class WorkingHoursResponse
         {
-            public int Hours { get; set; }
-            public int Minutes { get; set; }
+            public string Hours { get; set; }
+            public string Minutes { get; set; }
         }
     }
 

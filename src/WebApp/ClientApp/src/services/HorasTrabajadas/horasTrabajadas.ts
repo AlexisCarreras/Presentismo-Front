@@ -17,8 +17,8 @@ export default async function HorasTrabajadas() {
           },
           data: {
               user: 'Acarreras',
-              begin: "2021-12-21 00:00:00.000",
-              end: "2021-12-21 23:59:00.000"
+              begin: "2021-12-23 00:00:00.000",
+              end: "2021-12-23 23:59:00.000"
           }, 
           info: {
             message: '',

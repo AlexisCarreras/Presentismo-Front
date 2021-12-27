@@ -62,7 +62,7 @@ export const AccordionDetail = ({ inicio, lugarTrabajo, tipoHora }: data) => {
                         <FiberManualRecordIcon className={ classes.icon } />
             
                         <Typography className={classes.heading}>
-                            { inicio.slice(11,-9) }
+                            { inicio.substring(16,11) }
                         </Typography>
                         <Typography className={classes.secondaryHeading}> 
                             { lugarTrabajo }

@@ -31,15 +31,24 @@ const useStyles = makeStyles({
     },
     containerText: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         marginBottom: '2.25rem',
+        marginLeft: '7%'
     }, 
     text: {
         color: '#54CAA6',
         margin: 0, 
         textShadow: '1px 1px 3px #BEBEBE', 
-        marginRight: '6.5rem',
-        marginLeft: '7.5rem',
+        // marginRight: '6.5rem',
+        marginLeft: '2rem',
+    },
+    textSeconds: {
+        color: '#54CAA6',
+        margin: 0, 
+        textShadow: '1px 1px 3px #BEBEBE', 
+        marginRight: '3rem',
+        display: 'flex',
+        alignItems: 'center',
     },
 });
 
@@ -117,6 +126,9 @@ export const PaperClock = (  ) => {
                     </Typography>
                     <Typography className={ classes.text } variant="h4" gutterBottom>
                         Minutos
+                    </Typography>
+                    <Typography className={ classes.textSeconds } variant="h6" gutterBottom>
+                        Segundos
                     </Typography>
                 </div>  
 
