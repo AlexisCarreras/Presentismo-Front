@@ -1,5 +1,4 @@
-import { ButtonDisable         } from './Buttons/Disable/ButtonDisable';
-import { ButtonPrimary         } from './Buttons/Primary/ButtonPrimary';
+// import { ButtonPrimary         } from './Buttons/Primary/ButtonPrimary';
 import { ButtonSecondary       } from './Buttons/Secondary/ButtonSecondary';
 import { AvatarProfile         } from './Avatar/AvatarProfile';
 import { InputUsers            } from './Inputs/Users/InputUsers';
@@ -11,9 +10,8 @@ import { NotificationIcon      } from './ItemIcon/Notification/NotificationIcon'
 
 export const PruebasAtomos = () => {
 
-  const buttonPrimary    :string = 'Pausar';
+//   const buttonPrimary    :string = 'Pausar';
   const buttonSecondary  :string = 'Secondary';
-  const buttonDisable    :string = 'Disable';
 
   const avatarText       :string = 'AC';
 
@@ -25,7 +23,6 @@ export const PruebasAtomos = () => {
         <> 
             {/* <ButtonPrimary         text=   { buttonPrimary   }  disabled = { false } onChange={ handleChange } /> */}
             <ButtonSecondary       text=   { buttonSecondary } />
-            <ButtonDisable         text=   { buttonDisable   } />
             <hr />
             <AvatarProfile         text=   { avatarText      } />
             <hr />

@@ -14,7 +14,19 @@ const fecha = () => {
 
 };
 
-export default async function IniciarDia() {
+export default async function IniciarDia( valueLugar : string ) {
+
+  let idLugar : number = 0;
+
+  if( valueLugar === 'Home Office' ) {
+    idLugar = 1;
+  }
+  else if ( valueLugar === 'Cliente' ) {
+    idLugar = 2;
+  }
+  else if ( valueLugar === 'Presencial CDA' ) {
+    idLugar = 3;
+  }
 
   try {
     const response = await axios({
@@ -32,8 +44,7 @@ export default async function IniciarDia() {
         data: {
             user: 'Acarreras', 
             hour: fecha(),
-            idLugarTrabajo: 3, //Home= 1, Cliente=2, CDA= 3
-            // idLugarTrabajo: {id},
+            idLugarTrabajo: idLugar,
           },
         info: {
           message: '',

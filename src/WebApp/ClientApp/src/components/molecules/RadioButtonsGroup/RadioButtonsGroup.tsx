@@ -10,6 +10,11 @@ import { RadContext            } from '../../../hooks/UseContext/RadContext';
 
 import   LugarTrabajo            from '../../../services/LugarTrabajo/lugarTrabajo';
 
+interface props {
+    valueLugar     : string;
+    setValueLugar  : ( value: string ) => void;
+}
+
 const useStyles = makeStyles({
     container: {
         width: '100%',
@@ -33,11 +38,9 @@ const useStyles = makeStyles({
     },
 });
 
-export const RadioButtonsGroup = () => {
+export const RadioButtonsGroup = ( { valueLugar, setValueLugar }: props ) => {
 
     const classes = useStyles();  
-
-    const [value, setValue] = useState('');
 
     const { valuesRadioContext } = useContext( RadContext );
     const [ disableRadio ] = useState(valuesRadioContext);
@@ -58,14 +61,11 @@ export const RadioButtonsGroup = () => {
     }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue((event.target as HTMLInputElement).value);
+        setValueLugar((event.target as HTMLInputElement).value);
       if( valuesRadio === true ) {
           setValuesRadio(!valuesRadio);
       }
     };
-    // console.log(value);    
-  
-    // console.log(lugarTrabajo.data);
 
     return (
         <div>
@@ -79,7 +79,7 @@ export const RadioButtonsGroup = () => {
                         className={ classes.radioGroup }
                         aria-label="lugarTrabajo" 
                         name="lugarTrabajo" 
-                        value={value} 
+                        value={valueLugar} 
                         onChange={handleChange}
                     >
                         {
