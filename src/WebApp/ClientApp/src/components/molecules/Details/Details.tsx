@@ -102,6 +102,7 @@ export const Details = () => {
                             <AccordionDetail 
                                 key ={ a.idRegistro }
                                 inicio = { a.begin }
+                                fin = { a.end }
                                 lugarTrabajo = { a.lugarTrabajo }
                                 tipoHora = { a.tipoHora }
                             />

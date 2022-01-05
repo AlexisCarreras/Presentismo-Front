@@ -6,13 +6,14 @@ import   Typography              from '@material-ui/core/Typography';
 import { RadioButtonsActivated } from '../../atoms/RadioButtons/RadioButtonsActivated';
 import { ValueContext          } from '../../../hooks/UseContext/ValueContext';
 import { useState              } from 'react';
-import { RadContext            } from '../../../hooks/UseContext/RadContext';
+// import { RadContext            } from '../../../hooks/UseContext/RadContext';
 
 import   LugarTrabajo            from '../../../services/LugarTrabajo/lugarTrabajo';
 
 interface props {
     valueLugar     : string;
     setValueLugar  : ( value: string ) => void;
+    disableRadio   : boolean;
 }
 
 const useStyles = makeStyles({
@@ -38,12 +39,12 @@ const useStyles = makeStyles({
     },
 });
 
-export const RadioButtonsGroup = ( { valueLugar, setValueLugar }: props ) => {
+export const RadioButtonsGroup = ( { valueLugar, setValueLugar, disableRadio }: props ) => {
 
     const classes = useStyles();  
 
-    const { valuesRadioContext } = useContext( RadContext );
-    const [ disableRadio ] = useState(valuesRadioContext);
+    // const { valuesRadioContext } = useContext( RadContext );
+    // const [ disableRadio ] = useState(valuesRadioContext);
  
     const { valuesRadio, setValuesRadio } = useContext(ValueContext); 
 

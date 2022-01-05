@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         // justifyContent: 'space-around',
         // height: '93.1vh',
         position: 'relative',
-        width: '20%',
+        width: '22%',
     },
 });
 

@@ -25,7 +25,7 @@ export const ButtonPrimary = ({ text, disabled, onClick }: textButton) => {
  
     return (
         <Button  
-            onClick={ onClick }
+            onClick=    { () => onClick() }
             className=  { classes.buttonPrimary }
             disabled=   { disabled              }
             variant=    "contained" 

@@ -1,4 +1,4 @@
-import { useContext, useState  } from 'react';
+import { useContext, useState, useEffect  } from 'react';
 import { makeStyles, Paper     } from '@material-ui/core';
 import { RadioButtonsGroup     } from '../RadioButtonsGroup/RadioButtonsGroup';
 import   Typography              from '@material-ui/core/Typography';
@@ -12,7 +12,10 @@ import IniciarDia   from '../../../services/IniciarDia/iniciarDia';
 import FinalizarDia from '../../../services/FinalizarDia/finalizarDia';
 import PausarDia    from '../../../services/PausarDia/pausarDia';
 import Reiniciar    from '../../../services/Reiniciar/reiniciar';
-// import EstadoActual from '../../../services/EstadoActual/estadoActual';
+import EstadoActual from '../../../services/EstadoActual/estadoActual';
+
+import { RadContext } from '../../../hooks/UseContext/RadContext';
+
 
 const useStyles = makeStyles({
     paperFunction: {
@@ -110,43 +113,64 @@ export const PaperClock = (  ) => {
     const { valuesRadio } = useContext( ValueContext );
     
     const [valueLugar, setValueLugar] = useState<string>('');
+
+    //Prueba de estado de radioButtons
+    const { valuesRadioContext } = useContext( RadContext );
+    const [ disableRadio, setDisableRadio ] = useState(valuesRadioContext);
     
     // REVISAR API DE ESTADO ACTUAL
-    // const [ estadoActual, setEstadoActual ] = useState<any>(null);
+    const [ estadoActual, setEstadoActual ] = useState<any>(null);
 
-    // const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
  
-    // useEffect( () => { 
-    //     async function estado () {
-    //         const response: any =  await EstadoActual()
+    useEffect( () => { 
+        async function estado () {
+            const response: any =  await EstadoActual()
             
-    //         if( response.status === 200 ) {
-    //             setEstadoActual(response.data.data);
-    //             setLoading(false);
-    //         }
-    //         else {
-    //             setEstadoActual(null);
-    //         }
+            if( response.status === 200 ) {
+                setEstadoActual(response.data.data);
+                setLoading(false);
+            }
+            else {
+                setEstadoActual(null);
+            }
             
-    //     } 
-    //     estado();
-    // }, []); 
+        } 
+        estado();
+    }, []);
     
-    // if(isLoading === false){
-    //     if(estadoActual.estado === "INICIADO"){
-    //         console.log(estadoActual.estado);
-    //     }
-    // }
 
-    
+    //prueba
+    useEffect(() => {
+        function changeText() {
+            if(isLoading === false) {
+                if( estadoActual.estado === "INICIADO" ) {
+                    setText("Pausar");
+                }
+                else if( estadoActual.estado === "PAUSADO" ) {
+                    setText("Reanudar");
+                }
+                else if( estadoActual.estado === "FINALIZADO" ) {
+                    setText("Comenzar");
+                }
+            }
+        }
+
+        changeText();
+       
+      }, [ isLoading ]); 
+   
+    // console.log(text);
+
+          
     //Estructura de Watch
     const [time, setTime] = useState<any>({ms:0, s:0, m:0, h:0});
     const [interv, setInterv] = useState<any>();
-    const [status, setStatus] = useState<any>(0);
+    // const [status, setStatus] = useState<any>(0);
 
     const start = () => {
         run();
-        setStatus(1);
+        // setStatus(1);
         setInterv(setInterval(run, 10));
       };
     
@@ -171,12 +195,12 @@ export const PaperClock = (  ) => {
     
       const stop = () => {
         clearInterval(interv);
-        setStatus(2);
+        // setStatus(2);
       };
     
       const reset = () => {
         clearInterval(interv);
-        setStatus(0);
+        // setStatus(0);
         setTime({ms:0, s:0, m:0, h:0})
       };
     
@@ -189,17 +213,19 @@ export const PaperClock = (  ) => {
             start();
             setText('Pausar');
             setValueFinish(!valueFinish);
+            setDisableRadio(!disableRadio);
         }
         else if ( text ===  'Pausar' ) { 
             PausarDia();
             stop();
             setText('Reanudar');
+            setDisableRadio(!disableRadio);
         }
         else if ( text ===  'Reanudar' ) {
             Reiniciar(valueLugar);
             resume();
-            console.log("reiniciar");
             setText('Pausar');
+            setDisableRadio(!disableRadio);
         }
     };
 
@@ -208,9 +234,89 @@ export const PaperClock = (  ) => {
         reset();
         setValueFinish(!valueFinish);
         FinalizarDia(); 
+        setDisableRadio(!disableRadio);
     };
 
-    // console.log("PapperClock: " + valueLugar); 
+    const radioButtons = () => {
+        if(isLoading === false) {
+            if(estadoActual.estado === "INICIADO") {
+
+                return(
+                    <RadioButtonsGroup valueLugar={ estadoActual.lugarTrabajo } setValueLugar={ setValueLugar } disableRadio={ !disableRadio } />
+                )
+            }
+            
+            if(estadoActual.estado === "PAUSADO") {
+                return(
+                    <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
+                )
+            }
+
+            if(estadoActual.estado === "FINALIZADO") {
+                return(
+                    <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
+                )
+            }
+        }
+    }
+
+    const buttonsBeginEnd = () => {
+
+        if(isLoading === false) {
+            if(estadoActual.estado === "INICIADO") {
+                return(
+                    <div className={ classes.buttons }>
+                        <ButtonPrimary 
+                            text= { text }  
+                            disabled = { !valuesRadio } 
+                            onClick={ () => handleClickStart() }
+                        /> 
+                        <ButtonPrimary 
+                            text=" Finalizar "  
+                            disabled = { !valueFinish } 
+                            onClick={ () => handleClickFinish() }
+                        /> 
+                    </div>
+                )
+            }
+
+            if(estadoActual.estado === "PAUSADO") {
+                return(
+                    <div className={ classes.buttons }>
+                        <ButtonPrimary 
+                            text= { text }   
+                            disabled = { valuesRadio } 
+                            onClick={ () => handleClickStart() }
+                        /> 
+                        <ButtonPrimary 
+                            text=" Finalizar "  
+                            disabled = { !valueFinish } 
+                            onClick={ () => handleClickFinish() }
+
+                        /> 
+                    </div>
+                )
+            }
+
+            if(estadoActual.estado === "FINALIZADO") {
+                return(
+                    <div className={ classes.buttons }>
+                        <ButtonPrimary 
+                            text= { text }  
+                            disabled = { valuesRadio } 
+                            onClick={ () => handleClickStart() }
+                        /> 
+                        <ButtonPrimary 
+                            text=" Finalizar "  
+                            disabled = { valueFinish } 
+                            onClick={ () => handleClickFinish() }
+
+                        /> 
+                    </div>
+                )
+            }
+        }
+    }
 
     return (  
         <ButtonProvider>
@@ -260,9 +366,10 @@ export const PaperClock = (  ) => {
                     </Typography>
                 </div>  
 
-                <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } /> 
+                { radioButtons() }
 
-                <div className={ classes.buttons }>
+                { buttonsBeginEnd() }
+                {/* <div className={ classes.buttons }>
                     <ButtonPrimary 
                         text= { text }   
                         disabled = { valuesRadio } 
@@ -274,7 +381,7 @@ export const PaperClock = (  ) => {
                         onClick={ handleClickFinish }
 
                     /> 
-                </div>
+                </div> */}
             </Paper>  
         </ButtonProvider>  
     )

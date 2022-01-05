@@ -10,6 +10,7 @@ import   FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 interface data {
     inicio       : string;
+    fin          : string;
     lugarTrabajo : string;
     tipoHora     : string;
 }
@@ -27,11 +28,18 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       heading: {
           fontSize: theme.typography.pxToRem(15),
-          flexBasis: '33.33%',
+          flexBasis: '45%',
           flexShrink: 0,
-        },
+      },
+      headingComplete: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '45%',
+        flexShrink: 0,
+      },
         secondaryHeading: {
             fontSize: theme.typography.pxToRem(15),
+            flexBasis: '50%',
+            display: 'flex',
             color: theme.palette.text.secondary,
         },
         containerDetails: {
@@ -44,9 +52,30 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const AccordionDetail = ({ inicio, lugarTrabajo, tipoHora }: data) => {
+export const AccordionDetail = ({ inicio, fin, lugarTrabajo, tipoHora }: data) => {
 
     const classes = useStyles();
+
+    const inicioFin = () => {
+
+        if ( fin === null ) {
+            return(
+                <>
+                    <Typography className={classes.heading}>
+                        { inicio.substring(16,11) } -
+                    </Typography>
+                </>
+            )
+        }
+        else {
+            return(
+                <Typography className={classes.headingComplete}>
+                    { inicio.substring(16,11) } - { fin.substring(16,11) }
+                </Typography>
+            )
+        }
+
+    }
 
     const detalleInicio = () => {
 
@@ -61,12 +90,12 @@ export const AccordionDetail = ({ inicio, lugarTrabajo, tipoHora }: data) => {
                     >
                         <FiberManualRecordIcon className={ classes.icon } />
             
-                        <Typography className={classes.heading}>
-                            { inicio.substring(16,11) }
-                        </Typography>
+                        { inicioFin() }
+                        
                         <Typography className={classes.secondaryHeading}> 
                             { lugarTrabajo }
                         </Typography>
+                        
                     </AccordionSummary>
                     <AccordionDetails className={ classes.containerDetails }>
                         <Typography
