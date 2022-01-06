@@ -2,11 +2,10 @@ import { useContext, useState, useEffect  } from 'react';
 import { makeStyles, Paper     } from '@material-ui/core';
 import { RadioButtonsGroup     } from '../RadioButtonsGroup/RadioButtonsGroup';
 import   Typography              from '@material-ui/core/Typography';
-// import { Watch                 } from '../../atoms/Watch/Watch';
+import { Watch                 } from '../../atoms/Watch/Watch';
 import { ButtonPrimary         } from '../../atoms/Buttons/Primary/ButtonPrimary';
 import { ValueContext          } from '../../../hooks/UseContext/ValueContext';
 import { ButtonProvider        } from '../../../context/ButtonProvider';
-import   Reloj                   from '../../atoms/Svg/clock.svg';
 
 import IniciarDia   from '../../../services/IniciarDia/iniciarDia';
 import FinalizarDia from '../../../services/FinalizarDia/finalizarDia';
@@ -54,52 +53,6 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
     },
-
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '1rem',
-        width: '100%',
-    },
-    container: {
-        position: 'relative',
-        marginRight: '3%',
-        marginLeft: '3%',
-    },
-    counter: {
-        color: '#54CAA6',
-        margin: 0, 
-        textShadow: '2px 4px 4px #BEBEBE', 
-        position: 'absolute',
-        top: 65,
-        left: 70,
-    }, 
-    points: {
-        display: 'flex',
-        alignItems: 'center',
-        color: '#54CAA6', 
-        margin: 0, 
-        textShadow: '2px 4px 4px #BEBEBE', 
-    },
-    containerSeconds: {
-        position: 'relative',
-        marginRight: '3%',
-        marginLeft: '3%',
-        display: 'flex',
-        alignItems: 'center',
-    },
-    watchSeconds: {
-        width: '10rem',
-    },
-    counterSeconds: {
-        color: '#54CAA6',
-        margin: 0, 
-        textShadow: '2px 4px 4px #BEBEBE', 
-        position: 'absolute',
-        top: 92,
-        left: 50,
-        fontSize: '55px',
-    }, 
 });
 
 export const PaperClock = (  ) => {   
@@ -146,6 +99,7 @@ export const PaperClock = (  ) => {
             if(isLoading === false) {
                 if( estadoActual.estado === "INICIADO" ) {
                     setText("Pausar");
+                    start();
                 }
                 else if( estadoActual.estado === "PAUSADO" ) {
                     setText("Reanudar");
@@ -159,18 +113,14 @@ export const PaperClock = (  ) => {
         changeText();
        
       }, [ isLoading ]); 
-   
-    // console.log(text);
 
-          
+        
     //Estructura de Watch
     const [time, setTime] = useState<any>({ms:0, s:0, m:0, h:0});
     const [interv, setInterv] = useState<any>();
-    // const [status, setStatus] = useState<any>(0);
 
     const start = () => {
         run();
-        // setStatus(1);
         setInterv(setInterval(run, 10));
       };
     
@@ -195,12 +145,10 @@ export const PaperClock = (  ) => {
     
       const stop = () => {
         clearInterval(interv);
-        // setStatus(2);
       };
     
       const reset = () => {
         clearInterval(interv);
-        // setStatus(0);
         setTime({ms:0, s:0, m:0, h:0})
       };
     
@@ -324,35 +272,8 @@ export const PaperClock = (  ) => {
                 className={ classes.paperFunction } 
                 elevation={3}
             >
-                <section className={ classes.root }>
-                    <div className={ classes.container }>
-                        <img src={ Reloj } alt='reloj' />
-                        <Typography className={ classes.counter } variant="h1" gutterBottom>
-                            {(time.h >= 10)? time.h : "0"+ time.h}
-                        </Typography>
-                        {/* { horas() } */}
-                    </div>
-                    <Typography className={ classes.points } variant="h1" gutterBottom>
-                        :
-                    </Typography>
-                    <div className={ classes.container }>
-                        <img src={ Reloj } alt='reloj' />
-                        <Typography className={ classes.counter } variant="h1" gutterBottom>
-                            {(time.m >= 10)? time.m : "0"+ time.m}
-                        </Typography>
-                        {/* { minutos() } */}
-                    </div>
-                    <Typography className={ classes.points } variant="h1" gutterBottom>
-                        :
-                    </Typography>
-                    <div className={ classes.containerSeconds }>
-                        <img src={ Reloj } className={ classes.watchSeconds } alt='reloj' />
-                        <Typography className={ classes.counterSeconds } variant="h3" gutterBottom>
-                            {(time.s >= 10)? time.s : "0"+ time.s}
-                        </Typography>
-                    </div>
-                    
-                </section>
+
+                <Watch time = { time } setTime = { setTime } />
 
                 <div className={ classes.containerText }>
                     <Typography className={ classes.text } variant="h4" gutterBottom>
@@ -369,19 +290,7 @@ export const PaperClock = (  ) => {
                 { radioButtons() }
 
                 { buttonsBeginEnd() }
-                {/* <div className={ classes.buttons }>
-                    <ButtonPrimary 
-                        text= { text }   
-                        disabled = { valuesRadio } 
-                        onClick={ handleClickStart }
-                    /> 
-                    <ButtonPrimary 
-                        text=" Finalizar "  
-                        disabled = { valueFinish } 
-                        onClick={ handleClickFinish }
-
-                    /> 
-                </div> */}
+                
             </Paper>  
         </ButtonProvider>  
     )

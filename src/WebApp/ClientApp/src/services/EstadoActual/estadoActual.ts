@@ -35,7 +35,7 @@ export default async function EstadoActual() {
         }
       }
     }) 
-    console.log(response);
+    // console.log(response);
     
     return response;
   }

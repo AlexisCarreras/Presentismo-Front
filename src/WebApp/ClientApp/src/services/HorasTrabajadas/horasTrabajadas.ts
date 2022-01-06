@@ -1,5 +1,15 @@
 import axios from 'axios'; 
 
+const fecha = () => {
+
+  const hoy = new Date();
+
+  const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
+
+  return fecha;
+
+};
+
 export default async function HorasTrabajadas() {
 
     try {
@@ -16,9 +26,9 @@ export default async function HorasTrabajadas() {
             messageid: '202111700900009992',
           },
           data: {
-              user: 'Acarreras',
-              begin: "2021-12-23 00:00:00.000",
-              end: "2021-12-23 23:59:00.000"
+              user:  'Acarreras',
+              begin: fecha() + " " + "00:00:00.000" ,
+              end:   fecha() + " " + "23:59:00.000"
           }, 
           info: {
             message: '',
