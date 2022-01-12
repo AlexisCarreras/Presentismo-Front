@@ -14,6 +14,11 @@ export const useStylesItemIcon = () => {
             color: '#FFFF',
             fontSize: 30,
         },
+        text: {
+            color: '#FFFF',
+            fontSize: '15px',
+            marginLeft: '2rem',
+        },
     }); 
 
     return { 

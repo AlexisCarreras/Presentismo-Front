@@ -187,6 +187,13 @@ export const PaperClock = (  ) => {
 
     const radioButtons = () => {
         if(isLoading === false) {
+
+            if(estadoActual.estado === "SIN_INICIAR") {
+                return(
+                    <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
+                )
+            }
+
             if(estadoActual.estado === "INICIADO") {
 
                 return(
@@ -211,6 +218,24 @@ export const PaperClock = (  ) => {
     const buttonsBeginEnd = () => {
 
         if(isLoading === false) {
+
+            if(estadoActual.estado === "SIN_INICIAR") {
+                return(
+                    <div className={ classes.buttons }>
+                        <ButtonPrimary 
+                            text= { text }  
+                            disabled = { valuesRadio } 
+                            onClick={ () => handleClickStart() }
+                        /> 
+                        <ButtonPrimary 
+                            text=" Finalizar "  
+                            disabled = { valueFinish } 
+                            onClick={ () => handleClickFinish() }
+                        /> 
+                    </div>
+                )
+            }
+
             if(estadoActual.estado === "INICIADO") {
                 return(
                     <div className={ classes.buttons }>

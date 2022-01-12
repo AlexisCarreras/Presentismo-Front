@@ -1,7 +1,8 @@
+import { useStylesItemIcon }  from '../useStylesItemIcon'; 
+
 import ListItem                     from '@material-ui/core/ListItem';
 import InsertInvitationOutlinedIcon from '@material-ui/icons/InsertInvitationOutlined';
 
-import { useStylesItemIcon }        from '../useStylesItemIcon'; 
 
 export const ItemIconHours = () => {
 
@@ -11,7 +12,7 @@ export const ItemIconHours = () => {
     return (
         <ListItem 
             button
-            className={ classes.item }
+            className   = { classes.item    }
         >  
             <InsertInvitationOutlinedIcon 
                 className={ classes.icon }

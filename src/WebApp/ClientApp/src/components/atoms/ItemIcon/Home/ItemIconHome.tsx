@@ -1,7 +1,8 @@
-import ListItem              from '@material-ui/core/ListItem';
-import HomeOutlinedIcon      from '@material-ui/icons/HomeOutlined';
-
 import { useStylesItemIcon } from '../useStylesItemIcon';
+
+import   ListItem         from '@material-ui/core/ListItem';
+import   HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+
 
 export const ItemIconHome = () => {
 
@@ -11,11 +12,11 @@ export const ItemIconHome = () => {
     return ( 
         <ListItem 
             button 
-            className={ classes.item }
-        > 
+            className   = { classes.item    }
+        >  
             <HomeOutlinedIcon 
                 className={ classes.icon }
-            />
+                />
         </ListItem>
     )
 }

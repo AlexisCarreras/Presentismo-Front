@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       heading: {
           fontSize: theme.typography.pxToRem(15),
-          flexBasis: '45%',
+          flexBasis: '50%',
           flexShrink: 0,
       },
       headingComplete: {
         fontSize: theme.typography.pxToRem(15),
-        flexBasis: '45%',
+        flexBasis: '50%',
         flexShrink: 0,
       },
         secondaryHeading: {
