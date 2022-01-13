@@ -22,13 +22,15 @@ export default async function HorasTrabajadas() {
         data: {
           header: {
             consulter: 'fruiz',
-            date: '2021-12-17 09:00:00',
+            date: '2022-01-13 09:00:00',
             messageid: '202111700900009992',
           },
           data: {
-              user:  'Acarreras',
+              user:  'Fruiz',
               begin: fecha() + " " + "00:00:00.000" ,
               end:   fecha() + " " + "23:59:00.000"
+              // begin: "2022-01-14 00:00:00.000",
+              // end: "2022-01-14 23:59:00.000"
           }, 
           info: {
             message: '',
@@ -37,7 +39,7 @@ export default async function HorasTrabajadas() {
         }
       }) 
 
-      // console.log(response);
+      console.log(response);
       
       return response;
     }

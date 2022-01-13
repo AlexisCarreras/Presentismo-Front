@@ -14,7 +14,19 @@ const fecha = () => {
 
 };
 
-export default async function PausarDia() {
+export default async function PausarDia( valueLugar : string ) {
+
+  let idLugar : number = 0;
+
+  if( valueLugar === 'Home Office' ) {
+    idLugar = 1;
+  }
+  else if ( valueLugar === 'Cliente' ) {
+    idLugar = 2;
+  }
+  else if ( valueLugar === 'Presencial CDA' ) {
+    idLugar = 3;
+  }
 
   try {
     const response = await axios({
@@ -30,9 +42,10 @@ export default async function PausarDia() {
           messageId: '202111700900009992',
         },
         data: {
-            user: 'Acarreras', 
+            user: 'Fruiz', 
             hour: fecha(),
-            idLugarTrabajo: 3,
+            // hour: "2022-01-14 09:15:00.000",
+            idLugarTrabajo: idLugar,
         },
         info: {
           message: '',

@@ -26,9 +26,9 @@ export default async function RegistroDeHoras() {
                 messageid: '202111700900009992',
               },
               data: {
-                user: 'Acarreras',
+                user: 'Fruiz',
                 day: fecha(),
-                // day: '2021-12-17',
+                // day: '2022-01-14',
               },
               info: {
                 message: '',

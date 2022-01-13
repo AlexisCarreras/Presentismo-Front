@@ -77,16 +77,21 @@ export const Watch = ({ time, setTime }: props) => {
                 setHorasTrabajadas({});
             }
         } 
+
         horas();
     }, []); 
     
     useEffect(() => {
+        
         if(isLoading === false ) {
             setTime({ ms:0, s:0, m: horasTrabajadas.minutes, h: horasTrabajadas.hours });
+            // console.log("seteo de time" + time.m, time.h );
         }
-    }, [ isLoading ])
+        
+        
+    }, [ isLoading ]);
 
-    // console.log(time);
+    // console.log("fuera del 2do useEffect" + time.m, time.h );
     
     const horas = () => {
         if(isLoading) {
@@ -100,8 +105,6 @@ export const Watch = ({ time, setTime }: props) => {
 
             return (
                 <Typography className={ classes.counter } variant="h1" gutterBottom>
-                    {/* { horasTrabajadas.hours } */}
-                    {/* { ( time.h >= 10 )? time.h : "0"+ time.h }  */}
                     { time.h }
                 </Typography>
 
@@ -120,8 +123,6 @@ export const Watch = ({ time, setTime }: props) => {
         else {
             return (
                 <Typography className={ classes.counter } variant="h1" gutterBottom>
-                    {/* { horasTrabajadas.minutes } */}
-                    {/* { (time.m >= 10)? time.m : "0"+ time.m } */}
                     { time.m } 
                 </Typography>
             ) 
@@ -132,9 +133,6 @@ export const Watch = ({ time, setTime }: props) => {
         <section className={ classes.root }> 
             <div className={ classes.container }> 
                 <img src={ Reloj } alt='reloj' /> 
-                {/* <Typography className={ classes.counter } variant="h1" gutterBottom> 
-                    {(time.h >= 10)? time.h : "0"+ time.h} 
-                </Typography>  */}
                 { horas() } 
             </div> 
                 <Typography className={ classes.points } variant="h1" gutterBottom> 
@@ -142,9 +140,6 @@ export const Watch = ({ time, setTime }: props) => {
                 </Typography> 
             <div className={ classes.container }> 
                 <img src={ Reloj } alt='reloj' /> 
-                {/* <Typography className={ classes.counter } variant="h1" gutterBottom> 
-                    {(time.m >= 10)? time.m : "0"+ time.m} 
-                </Typography>  */}
                 { minutos() } 
             </div> 
                 <Typography className={ classes.points } variant="h1" gutterBottom> 

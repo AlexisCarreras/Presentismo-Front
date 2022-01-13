@@ -71,11 +71,15 @@ export const PaperClock = (  ) => {
     const { valuesRadioContext } = useContext( RadContext );
     const [ disableRadio, setDisableRadio ] = useState(valuesRadioContext);
     
-    // REVISAR API DE ESTADO ACTUAL
+    // API DE ESTADO ACTUAL
     const [ estadoActual, setEstadoActual ] = useState<any>(null);
 
     const [isLoading, setLoading] = useState(true);
- 
+    
+    //Estructura de Watch
+    const [time, setTime] = useState<any>({ms:0, s:0, m:0, h:0});
+    const [interv, setInterv] = useState<any>();
+    
     useEffect( () => { 
         async function estado () {
             const response: any =  await EstadoActual()
@@ -96,7 +100,11 @@ export const PaperClock = (  ) => {
     //prueba
     useEffect(() => {
         function changeText() {
+            // debugger
             if(isLoading === false) {
+                if( estadoActual.estado === "SIN_INICIAR" ) {
+                    console.log("Día sin iniciar");
+                }
                 if( estadoActual.estado === "INICIADO" ) {
                     setText("Pausar");
                     start();
@@ -112,16 +120,13 @@ export const PaperClock = (  ) => {
 
         changeText();
        
-      }, [ isLoading ]); 
+      }, [ text, isLoading ]); 
 
         
-    //Estructura de Watch
-    const [time, setTime] = useState<any>({ms:0, s:0, m:0, h:0});
-    const [interv, setInterv] = useState<any>();
 
     const start = () => {
-        run();
         setInterv(setInterval(run, 10));
+        run();
       };
     
       var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
@@ -147,10 +152,10 @@ export const PaperClock = (  ) => {
         clearInterval(interv);
       };
     
-      const reset = () => {
-        clearInterval(interv);
-        setTime({ms:0, s:0, m:0, h:0})
-      };
+    //   const reset = () => {
+    //     clearInterval(interv);
+    //     setTime({ms:0, s:0, m:0, h:0})
+    //   };
     
       const resume = () => start();
 
@@ -164,7 +169,7 @@ export const PaperClock = (  ) => {
             setDisableRadio(!disableRadio);
         }
         else if ( text ===  'Pausar' ) { 
-            PausarDia();
+            PausarDia(valueLugar);
             stop();
             setText('Reanudar');
             setDisableRadio(!disableRadio);
@@ -179,7 +184,8 @@ export const PaperClock = (  ) => {
 
     const handleClickFinish = () => {
         setText('Comenzar'); 
-        reset();
+        // reset();
+        stop();
         setValueFinish(!valueFinish);
         FinalizarDia(); 
         setDisableRadio(!disableRadio);

@@ -42,8 +42,9 @@ export default async function IniciarDia( valueLugar : string ) {
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Acarreras', 
+            user: 'Fruiz', 
             hour: fecha(),
+            // hour: "2022-01-14 09:00:00.000",
             idLugarTrabajo: idLugar,
           },
         info: {

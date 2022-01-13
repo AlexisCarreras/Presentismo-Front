@@ -42,8 +42,9 @@ export default async function Reiniciar( valueLugar : string ) {
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Acarreras', 
+            user: 'Fruiz', 
             hour: fecha(),
+            // hour: "2022-01-14 09:45:00",
             idLugarTrabajo: idLugar, //Home= 1, Cliente=2, CDA= 3
           },
         info: {

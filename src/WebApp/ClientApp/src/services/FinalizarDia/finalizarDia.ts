@@ -30,8 +30,9 @@ export default async function FinalizarDia() {
             messageid: '202111700900009992',
           },
           data: {
-              user: 'Acarreras',
+              user: 'Fruiz',
               hour: fecha(),
+              // hour: "2022-01-14 10:00:00" 
           }, 
           info: {
             message: '',
