@@ -19,15 +19,20 @@ namespace Presentismo.Application.Features.Version1.Workday.Commands.CurrentStat
         {
             [JsonPropertyName("horaInicio")]
             public string BeginTime { get; set; }
+
             [JsonPropertyName("horaFin")]
             public string EndingTime { get; set; }
+
             [JsonPropertyName("horasTrabajadas")]
-            public int WorkingHours { get; set; }
+            public int? WorkingHours { get; set; }
+
             [JsonPropertyName("lugarTrabajo")]
             public string Workplace { get; set; }
+
             [JsonPropertyName("estado")]
             public string State { get; set; }
         }
+
         public class CurrentStateData
         {
             public string User { get; set; }

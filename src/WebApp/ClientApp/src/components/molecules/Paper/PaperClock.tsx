@@ -100,7 +100,7 @@ export const PaperClock = (  ) => {
     //prueba
     useEffect(() => {
         function changeText() {
-            // debugger
+            debugger
             if(isLoading === false) {
                 if( estadoActual.estado === "SIN_INICIAR" ) {
                     console.log("Día sin iniciar");
@@ -120,7 +120,7 @@ export const PaperClock = (  ) => {
 
         changeText();
        
-      }, [ text, isLoading ]); 
+      }, [ isLoading ]); 
 
         
 
@@ -131,6 +131,7 @@ export const PaperClock = (  ) => {
     
       var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
     
+    //   debugger
       const run = () => {
         if(updatedM === 60){
           updatedH++;
@@ -184,7 +185,6 @@ export const PaperClock = (  ) => {
 
     const handleClickFinish = () => {
         setText('Comenzar'); 
-        // reset();
         stop();
         setValueFinish(!valueFinish);
         FinalizarDia(); 
