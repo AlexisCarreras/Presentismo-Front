@@ -4,14 +4,12 @@ import { Details    } from '../../molecules/Details/Details';
 
 const useStyles = makeStyles({
     root: {
-        alignItems: 'center',
+        alignItems: 'left',
         backgroundColor: "#F4F4F4",
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: 'space-around',
-        // height: '93.1vh',
         position: 'relative',
-        width: '22%',
+        width: '60%',
     },
 });
 

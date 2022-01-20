@@ -5,7 +5,7 @@ import { ButtonState   } from "../interfaces/interfaces"
 import { buttonReducer } from "./ButtonReducer"
 
 const INITIAL_STATE: ButtonState = {
-    textValue: 'Comenzar',
+    textValue: 'Inicio de actividades',
     activated: false,
 }
 

@@ -14,7 +14,7 @@ export default async function EstadoActual() {
 
   try {
     const response = await axios({
-      url: 'https://localhost:44323/api/Workday/CurrentState',
+      url: 'https://localhost:5001/api/Workday/CurrentState',
       // url: 'https://presentismocda.herokuapp.com/status',
       method: 'post',
       headers: {
@@ -22,12 +22,12 @@ export default async function EstadoActual() {
       },
       data: {
         header: {
-          consulter: 'lmessi',
+          consulter: 'acarreras',
           date: '2021-12-17 09:00:00',
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Fruiz', 
+            user: 'acarreras', 
             day: fecha(),
             // day: "2022-01-14"
           },

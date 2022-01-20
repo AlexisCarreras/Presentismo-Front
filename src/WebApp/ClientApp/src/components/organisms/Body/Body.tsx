@@ -6,7 +6,7 @@ import { ValueContext } from '../../../hooks/UseContext/ValueContext';
 
 const useStyles = makeStyles({
     root: {
-        alignItems: 'center',
+        alignItems: 'left',
         backgroundColor: "#FAFAFA",
         display: 'flex',
         flexDirection: 'column',
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         // height: '93.1vh',
         position: 'relative',
         width: '78%',
-        height: '100%',
+        height: '82%',
     },
 });
 

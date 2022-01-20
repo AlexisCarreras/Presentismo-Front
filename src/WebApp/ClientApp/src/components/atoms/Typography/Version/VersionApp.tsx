@@ -4,6 +4,11 @@ import Typography     from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     text: {
         color: '#FFFF',
+        justifyContent: 'center',
+     
+        marginLeft: '15%',
+        marginTop: '98%',
+        
     },
 });
 

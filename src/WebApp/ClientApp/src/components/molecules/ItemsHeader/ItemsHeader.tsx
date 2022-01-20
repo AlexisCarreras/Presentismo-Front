@@ -9,11 +9,12 @@ const useStyles = makeStyles({
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'space-around',
-        marginLeft: '3.5rem',
+        marginLeft: '7%',
         width: '100%',
     },
     section1: {
         width: '74%',
+        marginLeft: '3%',
     },
     section2: {
         alignItems: 'center',

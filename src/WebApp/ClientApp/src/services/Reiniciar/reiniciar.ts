@@ -30,19 +30,19 @@ export default async function Reiniciar( valueLugar : string ) {
 
   try {
     const response = await axios({
-      url: 'https://localhost:44323/api/Workday/restart',
+      url: 'https://localhost:5001/api/Workday/restart',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
       data: {
         header: {
-          consulter: 'lmessi',
+          consulter: 'acarreras',
           date: '2021-12-17 09:00:00',
           messageid: '202111700900009992',
         },
         data: {
-            user: 'Fruiz', 
+            user: 'acarreras', 
             hour: fecha(),
             // hour: "2022-01-14 09:45:00",
             idLugarTrabajo: idLugar, //Home= 1, Cliente=2, CDA= 3

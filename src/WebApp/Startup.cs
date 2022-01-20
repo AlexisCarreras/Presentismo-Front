@@ -49,7 +49,7 @@ namespace webapp
                 var clientUrl = Configuration["DefinitionClient:BaseUrl"];
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins(clientUrl, "https://localhost:44323").AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins(clientUrl, "https://localhost:50001").AllowAnyMethod().AllowAnyHeader();
                 });
             });
 

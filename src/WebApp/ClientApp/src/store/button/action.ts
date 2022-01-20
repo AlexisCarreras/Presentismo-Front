@@ -1,28 +1,36 @@
+var  INICIO = "Inicio de actividades";
+
+var FINALIZAR = "Finalizar actividades";
+
+var PAUSAR = "Pausar actividades";
+
+var REANUDAR = "Reanudar actividades";
+
 const comenzar = () => {
     return {
         type: 'COMENZAR_DIA',
-        payload: 'Comenzar'
+        payload: INICIO
     };
 };
 
 const pausar = () => {
     return {
         type: 'PAUSAR',
-        payload: 'Pausar'
+        payload: PAUSAR
     };
 };
 
 const reanudar = () => {
     return {
         type: 'REANUDAR',
-        payload: 'Reanudar'
+        payload: REANUDAR
     };
 };
 
 const finalizar = () => {
     return {
         type: 'FINALIZAR_DIA',
-        payload: 'Finalizar'
+        payload: FINALIZAR
     };
 };
 

@@ -19,12 +19,15 @@ import { RadContext } from '../../../hooks/UseContext/RadContext';
 const useStyles = makeStyles({
     paperFunction: {
         backgroundColor: '#FFFF',
-        height: '77%',
-        marginBottom: '2rem',
-        width: '70%',
+        height: '90%',
+        marginBottom: '15%',
+        marginTop:'0%',
+        width: '90%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
+        marginLeft: '5%',
+        marginRight: '5%',
     },
     buttons: {
         display: 'flex',
@@ -38,28 +41,70 @@ const useStyles = makeStyles({
         marginBottom: '2.25rem',
         marginLeft: '7%'
     }, 
-    text: {
+    textHours: {
+        position:'relative',
         color: '#54CAA6',
         margin: 0, 
         textShadow: '1px 1px 3px #BEBEBE', 
         // marginRight: '6.5rem',
-        marginLeft: '2rem',
+        top:'60%',
+        left:'22%',
+        fontSize:'95%',
     },
-    textSeconds: {
+    textMinutes: {
+        position:'relative',
         color: '#54CAA6',
         margin: 0, 
         textShadow: '1px 1px 3px #BEBEBE', 
-        marginRight: '3rem',
+        // marginRight: '6.5rem',
+      top:'60%',
+      left:'54%',
+        fontSize:'95%',
+    },
+    textSeconds: {
+        position:'relative',
+        color: '#54CAA6',
+        margin: 0, 
+        textShadow: '1px 1px 3px #BEBEBE', 
+        top:'0%',
+        left:'77%',
         display: 'flex',
         alignItems: 'center',
+        fontSize: '80%',
+    },
+    root:{
+        width:'100%',
+
     },
 });
 
 export const PaperClock = (  ) => {   
 
+    // Texto de los botones
+    
+    const INICIO = "Iniciar actividades";
+
+    const FINALIZAR = "Finalizar actividades";
+
+    const PAUSAR = "Pausar actividades";
+
+    const REANUDAR = "Reanudar actividades";
+
+    // Estados del dia
+
+    const INICIADO = "INICIADO";
+
+    const SIN_INICIAR = "SIN_INICIAR";
+
+    const PAUSADO = "PAUSADO";
+
+    const FINALIZADO = "FINALIZADO";
+
     const classes = useStyles();
 
-    const [text, setText] = useState('Comenzar');
+
+
+    const [text, setText] = useState(INICIO);
 
     const [valueFinish, setValueFinish] = useState(true);
     
@@ -102,18 +147,18 @@ export const PaperClock = (  ) => {
         function changeText() {
             debugger
             if(isLoading === false) {
-                if( estadoActual.estado === "SIN_INICIAR" ) {
+                if( estadoActual.estado === SIN_INICIAR ) {
                     console.log("Día sin iniciar");
                 }
-                if( estadoActual.estado === "INICIADO" ) {
-                    setText("Pausar");
+                if( estadoActual.estado === INICIADO ) {
+                    setText(PAUSAR);
                     start();
                 }
-                else if( estadoActual.estado === "PAUSADO" ) {
-                    setText("Reanudar");
+                else if( estadoActual.estado === PAUSADO ) {
+                    setText(REANUDAR);
                 }
-                else if( estadoActual.estado === "FINALIZADO" ) {
-                    setText("Comenzar");
+                else if( estadoActual.estado === FINALIZADO ) {
+                    setText(INICIO);
                 }
             }
         }
@@ -162,29 +207,29 @@ export const PaperClock = (  ) => {
 
     //Estructura de paperClock
     const handleClickStart = () => {
-        if ( text ===  'Comenzar' ) {
+        if ( text ===  INICIO ) {
             IniciarDia(valueLugar);
             start();
-            setText('Pausar');
+            setText(PAUSAR);
             setValueFinish(!valueFinish);
             setDisableRadio(!disableRadio);
         }
-        else if ( text ===  'Pausar' ) { 
+        else if ( text ===  PAUSAR ) { 
             PausarDia(valueLugar);
             stop();
-            setText('Reanudar');
+            setText(REANUDAR);
             setDisableRadio(!disableRadio);
         }
-        else if ( text ===  'Reanudar' ) {
+        else if ( text ===  REANUDAR) {
             Reiniciar(valueLugar);
             resume();
-            setText('Pausar');
+            setText(PAUSAR);
             setDisableRadio(!disableRadio);
         }
     };
 
     const handleClickFinish = () => {
-        setText('Comenzar'); 
+        setText(INICIO); 
         stop();
         setValueFinish(!valueFinish);
         FinalizarDia(); 
@@ -194,26 +239,26 @@ export const PaperClock = (  ) => {
     const radioButtons = () => {
         if(isLoading === false) {
 
-            if(estadoActual.estado === "SIN_INICIAR") {
+            if(estadoActual.estado === SIN_INICIAR) {
                 return(
                     <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
                 )
             }
 
-            if(estadoActual.estado === "INICIADO") {
+            if(estadoActual.estado === INICIADO) {
 
                 return(
                     <RadioButtonsGroup valueLugar={ estadoActual.lugarTrabajo } setValueLugar={ setValueLugar } disableRadio={ !disableRadio } />
                 )
             }
             
-            if(estadoActual.estado === "PAUSADO") {
+            if(estadoActual.estado === PAUSADO) {
                 return(
                     <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
                 )
             }
 
-            if(estadoActual.estado === "FINALIZADO") {
+            if(estadoActual.estado === FINALIZADO) {
                 return(
                     <RadioButtonsGroup valueLugar={ valueLugar } setValueLugar={ setValueLugar } disableRadio={ disableRadio } />
                 )
@@ -225,7 +270,7 @@ export const PaperClock = (  ) => {
 
         if(isLoading === false) {
 
-            if(estadoActual.estado === "SIN_INICIAR") {
+            if(estadoActual.estado === SIN_INICIAR) {
                 return(
                     <div className={ classes.buttons }>
                         <ButtonPrimary 
@@ -234,7 +279,7 @@ export const PaperClock = (  ) => {
                             onClick={ () => handleClickStart() }
                         /> 
                         <ButtonPrimary 
-                            text=" Finalizar "  
+                            text={FINALIZAR} 
                             disabled = { valueFinish } 
                             onClick={ () => handleClickFinish() }
                         /> 
@@ -242,7 +287,7 @@ export const PaperClock = (  ) => {
                 )
             }
 
-            if(estadoActual.estado === "INICIADO") {
+            if(estadoActual.estado === INICIADO) {
                 return(
                     <div className={ classes.buttons }>
                         <ButtonPrimary 
@@ -251,7 +296,7 @@ export const PaperClock = (  ) => {
                             onClick={ () => handleClickStart() }
                         /> 
                         <ButtonPrimary 
-                            text=" Finalizar "  
+                            text={FINALIZAR}  
                             disabled = { !valueFinish } 
                             onClick={ () => handleClickFinish() }
                         /> 
@@ -259,7 +304,7 @@ export const PaperClock = (  ) => {
                 )
             }
 
-            if(estadoActual.estado === "PAUSADO") {
+            if(estadoActual.estado === PAUSADO) {
                 return(
                     <div className={ classes.buttons }>
                         <ButtonPrimary 
@@ -268,7 +313,7 @@ export const PaperClock = (  ) => {
                             onClick={ () => handleClickStart() }
                         /> 
                         <ButtonPrimary 
-                            text=" Finalizar "  
+                            text={FINALIZAR} 
                             disabled = { !valueFinish } 
                             onClick={ () => handleClickFinish() }
 
@@ -277,7 +322,7 @@ export const PaperClock = (  ) => {
                 )
             }
 
-            if(estadoActual.estado === "FINALIZADO") {
+            if(estadoActual.estado === FINALIZADO) {
                 return(
                     <div className={ classes.buttons }>
                         <ButtonPrimary 
@@ -286,7 +331,7 @@ export const PaperClock = (  ) => {
                             onClick={ () => handleClickStart() }
                         /> 
                         <ButtonPrimary 
-                            text=" Finalizar "  
+                            text={FINALIZAR} 
                             disabled = { valueFinish } 
                             onClick={ () => handleClickFinish() }
 
@@ -297,7 +342,8 @@ export const PaperClock = (  ) => {
         }
     }
 
-    return (  
+    return ( 
+        <div className={classes.root}>
         <ButtonProvider>
             <Paper  
                 className={ classes.paperFunction } 
@@ -306,23 +352,22 @@ export const PaperClock = (  ) => {
 
                 <Watch time = { time } setTime = { setTime } />
 
-                <div className={ classes.containerText }>
-                    <Typography className={ classes.text } variant="h4" gutterBottom>
+                 
+                {/* <Typography className={ classes.textHours }  gutterBottom>
                         Horas
                     </Typography>
-                    <Typography className={ classes.text } variant="h4" gutterBottom>
+                    <Typography className={ classes.textMinutes } gutterBottom>
                         Minutos
                     </Typography>
-                    <Typography className={ classes.textSeconds } variant="h6" gutterBottom>
+                    <Typography className={ classes.textSeconds }gutterBottom>
                         Segundos
-                    </Typography>
-                </div>  
-
+                    </Typography> */}
                 { radioButtons() }
 
                 { buttonsBeginEnd() }
                 
             </Paper>  
         </ButtonProvider>  
+        </div> 
     )
 }

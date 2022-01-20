@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles({
     paper: {
         backgroundColor: "#4F41A3",
+        height:'100%',
     },
     icon: {
         color: '#333',
@@ -24,7 +25,8 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        height: '70%',
+        height: '90%',
+        marginBottom: '2%'
     },
 });
  
@@ -37,11 +39,9 @@ export const DrawerNav = () => {
             classes= {{ paper: classes.paper }}
             variant= "permanent"
         > 
-            <section className={ classes.container }>
+            <section >
                 <ListItemsIcons />
-                <div className={ classes.version }>
-                    <VersionApp/>   
-                </div>
+                <VersionApp/>   
             </section>
         </Drawer>
     )

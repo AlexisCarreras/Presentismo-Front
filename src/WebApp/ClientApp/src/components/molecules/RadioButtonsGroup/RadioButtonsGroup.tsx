@@ -20,13 +20,14 @@ const useStyles = makeStyles({
     container: {
         width: '100%',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'left'
     },
     text: {
         color: '#B2B2B2',
-        fontSize: '19px',
+        fontSize: '100%',
         width: '67%',
         justifyContent: 'flex-start ',
+        marginLeft: '2%',
     }, 
     radioGroup: {
         width: '80%',
@@ -36,6 +37,9 @@ const useStyles = makeStyles({
         alignItems: 'end',
         marginTop: '1rem',
         marginBottom: '1.75rem',
+        marginLeft: '10%',
+        marginRight: '10%',
+     
     },
 });
 

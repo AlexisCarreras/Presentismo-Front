@@ -30,19 +30,19 @@ export default async function PausarDia( valueLugar : string ) {
 
   try {
     const response = await axios({
-      url: 'https://localhost:44323/api/Workday/pause',
+      url: 'https://localhost:5001/api/Workday/pause',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
       data: {
         header: {
-          consulter: 'lmessi',
+          consulter: 'acarreras',
           hour: '2021-12-02 09:00:00',
           messageId: '202111700900009992',
         },
         data: {
-            user: 'Fruiz', 
+            user: 'acarreras', 
             hour: fecha(),
             // hour: "2022-01-14 09:15:00.000",
             idLugarTrabajo: idLugar,

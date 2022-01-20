@@ -3,26 +3,28 @@ import { makeStyles }      from '@material-ui/core';
 import   Card              from '@material-ui/core/Card';
 import   CardHeader        from '@material-ui/core/CardHeader';
 import   Typography        from '@material-ui/core/Typography';
-import { AccordionDetail } from '../../atoms/Accordion/AccordionDetail';
+import { AccordionDetail } from '../../organisms/Accordion/AccordionDetail';
 
 import RegistroDeHoras from '../../../services/RegistroDeHoras/registroDeHoras';
 
 const useStyles = makeStyles({
     card: {
-        width: '100%',
-        marginTop: '3rem',
-        marginRight: '3rem',
+        width: '90%',
+        marginTop: '5%',
+        marginRight: '5%',
+        marginLeft: '5%',
+       // marginRight: '3rem',
         // marginLeft: '1rem',
     },
     cardHeader: {
         backgroundColor: '#54CAA6',
         color: '#FFFF',
-        fontSize: '17px',
+        fontSize: '100%',
         textAlign: 'center', 
     },
     date: {
         color: '#7D7D7D',
-        fontSize: '15px',
+        fontSize: '88px',
         padding: '1rem',
     }
 });
@@ -95,12 +97,13 @@ export const Details = () => {
                         title='Detalles'  
                     />
                     
-                    { fecha() }
+                   
                             
                     {
                         registroHora.data.map((a: any) =>
                             <AccordionDetail 
                                 key ={ a.idRegistro }
+                                id={a.idRegistro}
                                 inicio = { a.begin }
                                 fin = { a.end }
                                 lugarTrabajo = { a.lugarTrabajo }
