@@ -6,7 +6,8 @@ import { ItemIconRequests } from '../../atoms/ItemIcon/Requests/ItemIconRequests
 
 const useStyles = makeStyles({
     list: {
-        marginTop: '3.5rem', 
+        marginTop: '3.5rem',
+        backgroundColor:'#007DC4', 
     },
 });
 

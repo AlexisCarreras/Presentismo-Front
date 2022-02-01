@@ -13,9 +13,10 @@ const useStyles = makeStyles({
         width: '96.5%',
         height: '93%',
         padding: 0,
+        fontFamily: '"Montserrat", sans-serif',
     },
     bodyDiv: {
-        
+        fontFamily: '"Montserrat", sans-serif',
         width: '100%',
         height: '100%',
         

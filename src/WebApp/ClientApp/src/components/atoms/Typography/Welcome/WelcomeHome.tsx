@@ -1,35 +1,39 @@
 import { makeStyles } from '@material-ui/core';
 import   Typography   from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles({ 
     text1: {
         
-        color: '#29279D',
+        color: '#007dc4',
         fontSize: '90%',
         marginLeft: '5%',
         marginTop : '2%',
+        fontFamily:'"Montserrat", sans-serif'
     },
 
     fechaText: {
-        color: '#29279D',
+        color: '#007dc4',
         fontSize: '100%',
-     
+        fontFamily:'"Montserrat", sans-serif'
         
     },
 
     text2: { 
-        color: '#7A7979',
+        color: '#555559',
         fontSize: '70%',
         marginLeft: '5%',
         marginBottom: '5%',
         marginRight: '10%',
+        fontFamily:'"Montserrat", sans-serif'
         
     },
     conteinerDate: { 
         height: '20%',
         width: '40%',
-        marginLeft : '240%',
+        marginLeft : '185%',
         marginTop : '2%',
+        fontFamily:'"Montserrat", sans-serif'
     },
 });
 const fecha = () => {

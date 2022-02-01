@@ -9,7 +9,8 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        width: '60%',
+        width: '62%',
+        fontFamily: '"Montserrat", sans-serif',
     },
 });
 
@@ -19,7 +20,7 @@ export const CalendarDetails = () => {
 
     return (
         <div className={ classes.root } >
-            {/* <Calendar /> */}
+        
             <Details  />
         </div>
     )

@@ -9,8 +9,8 @@ interface valueRadioButton {
 
 const useStyles = makeStyles({
     radio: {
-        color: '#54CAA6',
-        
+        color: '#007dc4',
+        fontFamily:'"Montserrat", sans-serif'
     },
 });
 

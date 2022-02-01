@@ -1,8 +1,9 @@
-import { useState     } from 'react';
+import { useEffect, useState     } from 'react';
 import { makeStyles   } from '@material-ui/core';
 import { PaperWelcome } from '../../molecules/Paper/PaperWelcome';
-import { PaperClock   } from '../../molecules/Paper/PaperClock';
 import { ValueContext } from '../../../hooks/UseContext/ValueContext';
+import Skeleton from '@material-ui/lab/Skeleton';
+import { PaperClock } from '../../molecules/Paper/PaperClock';
 
 const useStyles = makeStyles({
     root: {
@@ -13,16 +14,19 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
         // height: '93.1vh',
         position: 'relative',
-        width: '78%',
+        width: '70%',
         height: '82%',
+        fontFamily: '"Montserrat", sans-serif',
     },
 });
 
 export const Body = () => {
 
     const classes = useStyles();
-
     const [valuesRadio, setValuesRadio] = useState( true );
+  
+
+    
 
     return (
         <ValueContext.Provider value={{ 
@@ -30,7 +34,7 @@ export const Body = () => {
             setValuesRadio 
         }}> 
             <div className={ classes.root } >
-                <PaperWelcome />
+               <PaperWelcome />
                 <PaperClock   />
             </div>
         </ValueContext.Provider>

@@ -7,7 +7,8 @@ interface userName {
 
 const useStyles = makeStyles({
     text: {
-        color: '#29279D',
+        color: '#007DC4',
+        fontFamily:'"Montserrat", sans-serif'
     },
 });
 

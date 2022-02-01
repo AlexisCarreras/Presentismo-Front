@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     text: {
         color: '#FFFF',
         justifyContent: 'center',
-     
+        fontFamily:'"Montserrat", sans-serif',
         marginLeft: '15%',
         marginTop: '98%',
         

@@ -10,6 +10,10 @@ const useStyles = makeStyles({
         backgroundColor: '#FFFF',
         color: '#4F41A3',
         textTransform: 'none',
+        fontFamily:'"Montserrat", sans-serif',
+        '&:hover':{
+            backgroundColor:'#F6921E'
+        }
     }
 })
 

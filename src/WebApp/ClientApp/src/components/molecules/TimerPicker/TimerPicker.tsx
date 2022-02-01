@@ -8,13 +8,16 @@ import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
 } from '@material-ui/pickers';
-import { ButtonDetails } from '../../atoms/Buttons/Details/ButtonDetails';
+import { ButtonGroupDetail } from '../../molecules/ButtonsGroup/ButtonGroupDetail';
 import { makeStyles } from '@material-ui/core';
+import { SelectDetails } from '../../atoms/Select/SelectDetails';
+
 
 
 interface data {
     inicio: Date;
     fin: Date;
+
 }
 
 const useStyles = makeStyles({
@@ -24,12 +27,15 @@ const useStyles = makeStyles({
         marginLeft: '50%',
         marginTop: '10%',
         textTransform: 'none',
-        height: '40%'
+        height: '40%',
+        backgroundColor: '#007dc4',
+        '&:hover': {
+            backgroundColor: '#F6921E'
+        }
     },
 
     inLine: {
-        float:'right'
-        
+        alignItems: 'center'
     }
 })
 
@@ -37,12 +43,12 @@ const useStyles = makeStyles({
 export const TimerPicker = ({ inicio, fin }: data) => {
 
     const classes = useStyles();
-    const [selectedDateInicio, setSelectedDateInicio] = React.useState<Date | null>(
-        new Date(inicio),
-    );
-    const [selectedDateFin, setSelectedDateFin] = React.useState<Date | null>(
-        new Date(fin),
-    );
+
+    const [inicioTemp,setInicioTemp]=useState(inicio);
+    const [finTemp,setFinTemp]=useState(inicio);
+
+    const [lugarDeTrabajo,setLugarDeTrabajo] = useState("");
+    const [descripcion,setDescripcion] = useState("");
 
     const [isDisableInicio, setIsDisableInicio] = useState(false);
     const [isDisableFin, setIsDisableFin] = useState(false);
@@ -53,14 +59,16 @@ export const TimerPicker = ({ inicio, fin }: data) => {
             if (date !== null) {
                 if (date > inicio && date < fin) {
 
-                    setSelectedDateInicio(date);
+                    setInicioTemp(date)
+                    console.log(date);
+                    console.log(inicio);
                     setIsDisableFin(true);
                 } else {
-                    setSelectedDateInicio(inicio);
+                    setInicioTemp(inicio);
                 }
             }
         } catch {
-            setSelectedDateInicio(inicio);
+            setInicioTemp(inicio);
         }
 
     };
@@ -70,56 +78,64 @@ export const TimerPicker = ({ inicio, fin }: data) => {
             if (date !== null) {
                 if (date > inicio && date < fin) {
 
-                    setSelectedDateFin(date);
+                    setFinTemp(date)
                     setIsDisableInicio(true);
 
                 } else {
-                    setSelectedDateFin(fin);
+                    setFinTemp(fin);
                 }
             }
         } catch {
-            setSelectedDateFin(fin);
+            setFinTemp(fin);
         }
 
     };
 
     return (
         <div>
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <div className={classes.inLine}>
+                    <Grid>
+                        <KeyboardTimePicker
+                            disabled={isDisableInicio}
+                            margin="normal"
+                            id="Inicio"
+                            label='Inicio'
+                            value={inicioTemp}
+                            onChange={handleDateChangeInicio}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change time',
+                            }}
+                        />
 
-                <Grid>
-                    <KeyboardTimePicker
-                        disabled={isDisableInicio}
-                        margin="normal"
-                        id="Inicio"
-                        label='Inicio'
-                        value={selectedDateInicio}
-                        onChange={handleDateChangeInicio}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change time',
-                        }}
-                    />
+                        <KeyboardTimePicker
+                            disabled={isDisableFin}
+                            margin="normal"
+                            id="Fin"
+                            label='Fin'
+                            value={finTemp}
+                            onChange={handleDateChangeFin}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change time',
+                            }}
+                        />
 
-                    <KeyboardTimePicker
-                        disabled={isDisableFin}
-                        margin="normal"
-                        id="Fin"
-                        label='Fin'
-                        value={selectedDateFin}
-                        onChange={handleDateChangeFin}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change time',
-                        }}
-                    />
-                </Grid>
+                    </Grid>
+                    <TextBox text={descripcion} setText={setDescripcion}/>
+                    <SelectDetails idTrabajo={lugarDeTrabajo} setIdLugarTrabajo={setLugarDeTrabajo} ></SelectDetails>
+                    <ButtonGroupDetail inicio={inicio} fin={fin} descripcion={descripcion} lugarTrabajo={lugarDeTrabajo}
+                     setDescripcion={setDescripcion}
+                     setIdTrabajo={setLugarDeTrabajo}
+                     inicioTemp={inicio}
+                     finTemp={fin}
+                     setInicio={setInicioTemp}
+                     setFin={setFinTemp}></ButtonGroupDetail>
+                </div>
             </MuiPickersUtilsProvider>
-            <TextBox />
-            <div className={classes.inLine} >
-                <ButtonDetails estilo={classes.buttonPrimary} text={'Restablecer'} disabled={false} onClick={() => { }} />
-            </div>
-            <div className={classes.inLine}>
-                <ButtonDetails estilo={classes.buttonPrimary} text={'Guardar'} disabled={false} onClick={() => { }} />
-            </div>
+
+
+
         </div>
 
     );
