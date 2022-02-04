@@ -31,36 +31,43 @@ const fecha = () => {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            textAlign: 'center'
+            //textAlign:    'center',
+            fontFamily: '"Montserrat", sans-serif',
         },
         icon: {
-            color: '#9FA2FE',
-            fontSize: '10px',
-            marginTop: 'auto',
-            marginBottom: 'auto'
+            color:        '#F6921E',
+            fontSize:     '10px',
+            marginTop:    'auto',
+            marginBottom: 'auto',
+            fontFamily: '"Montserrat", sans-serif',
         },
         heading: {
             fontSize: theme.typography.pxToRem(12),
-            flexBasis: '25%',
-            flexShrink: 0,
+            flexBasis:     '25%',
+            flexShrink:    0,
+            fontFamily: '"Montserrat", sans-serif',
         },
         headingComplete: {
             fontSize: theme.typography.pxToRem(12),
-            flexBasis: '25%',
-            flexShrink: 0,
+            flexBasis:     '25%',
+            flexShrink:    0,
+            fontFamily: '"Montserrat", sans-serif',
         },
         secondaryHeading: {
-            fontSize: theme.typography.pxToRem(12),
-            flexBasis: '25%',
-            display: 'flex',
-            color: theme.palette.text.secondary,
+            fontSize:     theme.typography.pxToRem(12),
+            flexBasis:    '25%',
+            display:      'flex',
+            color:        theme.palette.text.secondary,
+            fontFamily: '"Montserrat", sans-serif',
         },
         containerDetails: {
-            backgroundColor: '#F8F8F8',
+            fontFamily:'"Montserrat", sans-serif',
+            color:      '#F6921E',
         },
         details: {
-            color: '#7A7979',
+            color:      '#F6921E',
             marginLeft: '2rem',
+            fontFamily:'"Montserrat", sans-serif',
         },
     }),
 );
@@ -96,7 +103,6 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
             return (
                 <div>
                     <TimerPicker inicio={new Date(inicio)} fin={new Date(fin)} />
-                    
                 </div>
             )
         }
@@ -106,7 +112,7 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
 
         if (tipoHora === "Productiva") {
             return (
-                <Accordion>
+                <Accordion className={classes.root}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -123,7 +129,9 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
 
                     </AccordionSummary>
                     <AccordionDetails className={classes.containerDetails}>
+                  
                         {botton()}
+                        
                     </AccordionDetails>
                 </Accordion>
             )

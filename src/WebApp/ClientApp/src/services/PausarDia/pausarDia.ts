@@ -30,7 +30,9 @@ export default async function PausarDia( valueLugar : string ) {
 
   try {
     const response = await axios({
-      url: 'https://localhost:5001/api/Workday/pause',
+      url: 'https://localhost:44323/api/Workday/pause',
+      //url: 'https://localhost:5001/api/Workday/CurrentState',
+      //url: 'https://presentismocda.herokuapp.com/',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

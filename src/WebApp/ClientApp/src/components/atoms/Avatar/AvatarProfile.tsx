@@ -13,8 +13,8 @@ interface textAvatar {
 const useStyles = makeStyles({
     avatar: {
         backgroundColor: '#FFFF',
-        border:          '1.5px solid #5E5BFF',
-        color:           '#29279D',
+        border:          '2.5px solid #007DC4',
+        color:           '#F6921E',
     },
     menu: {
         marginTop: '2.5rem',

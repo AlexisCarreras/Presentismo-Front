@@ -18,7 +18,10 @@ export default async function FinalizarDia() {
 
     try {
       const response = await axios({
-        url: 'https://localhost:5001/api/Workday/finish',
+        
+        //url: 'https://localhost:5001/api/Workday/CurrentState',
+        url: 'https://localhost:44323/api/Workday/finish',
+        //url: 'https://presentismocda.herokuapp.com/',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',

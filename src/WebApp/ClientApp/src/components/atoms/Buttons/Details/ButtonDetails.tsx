@@ -5,7 +5,7 @@ interface textButton {
     text     : string;
     disabled : boolean;
     estilo   : any;
-    onClick : (  ) => void;
+    onClick : () => void;
 }
 
 const useStyles = makeStyles({
@@ -22,7 +22,8 @@ export const ButtonDetails = ({ estilo,text, disabled, onClick }: textButton) =>
             className=  { estilo                }
             disabled=   { disabled              }
             variant=    "contained" 
-            color=      "primary"
+            color=      "secondary"
+        
         >
             { text }
         </Button>

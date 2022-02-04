@@ -30,7 +30,9 @@ export default async function Reiniciar( valueLugar : string ) {
 
   try {
     const response = await axios({
-      url: 'https://localhost:5001/api/Workday/restart',
+     // url: 'https://localhost:5001/api/Workday/restart',
+      //url: 'https://presentismocda.herokuapp.com/',
+      url: 'https://localhost:44323/api/Workday/restart',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

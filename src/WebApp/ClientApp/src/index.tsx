@@ -1,5 +1,5 @@
 import   ReactDOM   from 'react-dom';
-import   App        from './components/App';
+import   App        from './components/templates/App/App';
 // import { Provider } from 'react-redux';
 // import   store      from './store/store';
 

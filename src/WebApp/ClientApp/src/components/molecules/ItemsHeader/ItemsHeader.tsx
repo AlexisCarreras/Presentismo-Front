@@ -4,6 +4,7 @@ import { NameHeader       } from '../../atoms/Typography/NameHeader/NameHeader';
 import { AvatarProfile    } from '../../atoms/Avatar/AvatarProfile';
 import   cdaLogo            from '../../atoms/Logo/cdaLogo.png';
 
+
 const useStyles = makeStyles({
     root: {
         alignItems: 'center',
@@ -21,7 +22,12 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         marginLeft: '3.5rem',
-        width: '13.5%', 
+        width: '35%', 
+    },
+    name: {
+  
+        paddingLeft:'15%',
+     
     },
     img: {
         width: '110px',
@@ -32,7 +38,7 @@ export const ItemsHeader = () => {
 
     const classes = useStyles();
 
-    const userName   :string = 'Alexis Carreras';
+    const userName   :string = 'Alexis, Carreras';
     const avatarText :string = 'AC';
 
     return (
@@ -45,9 +51,12 @@ export const ItemsHeader = () => {
                 />
             </section>
             <section className={ classes.section2 } >
-                <NotificationIcon />
+                <NotificationIcon  />
+          
                 <NameHeader    name= { userName   } />
+             
                 <AvatarProfile text= { avatarText } />
+                
             </section>
         </div>
     )

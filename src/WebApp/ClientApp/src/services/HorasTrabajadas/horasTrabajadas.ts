@@ -14,7 +14,10 @@ export default async function HorasTrabajadas() {
 
     try {
       const response = await axios({
-        url: 'https://localhost:5001/api/Workday/WorkingHours',
+        
+        url: 'https://localhost:44323/api/Workday/WorkingHours',
+        //url: 'https://localhost:5001/api/Workday/CurrentState',
+         //url: 'https://presentismocda.herokuapp.com/',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',

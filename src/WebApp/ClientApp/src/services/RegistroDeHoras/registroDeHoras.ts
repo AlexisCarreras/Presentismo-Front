@@ -14,7 +14,9 @@ export default async function RegistroDeHoras() {
    
     try {
         const response = await axios({
-          url: 'https://localhost:5001/api/Workday/Registerofhours',
+          url: 'https://localhost:44323/api/Workday/Registerofhours',
+          //url: 'https://localhost:5001/api/Workday/CurrentState',
+          //url: 'https://presentismocda.herokuapp.com/',
           method: 'post', 
           headers: {
             'Access-Control-Allow-Origin': '*',

@@ -4,9 +4,9 @@ export const useStylesItemIcon = () => {
 
     const useStyles = makeStyles({
         item: {
-            backgroundColor: '#4F41A3',
+            backgroundColor: '#007DC4',
             '&:hover': {
-                backgroundColor: '#898DFF',
+                backgroundColor: '#F6921E',
             },
             padding: '1rem',
         },
