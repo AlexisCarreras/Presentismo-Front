@@ -1,11 +1,6 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-
-import { ButtonDetails } from '../../Buttons/Details/ButtonDetails';
-import { setTextRange } from 'typescript';
-import { HolidayVillage } from '@mui/icons-material';
 import { useState } from 'react';
 
 const useStyles = makeStyles({
@@ -14,6 +9,7 @@ const useStyles = makeStyles({
         fontSize: '16px',
         marginLeft: '90%',
         textTransform: 'none',
+        paddingLeft: '6%',
         height: '40%'
     }
 })

@@ -26,8 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
 interface prop{
   idTrabajo:String,
   setIdLugarTrabajo:(value:string)=>void,
+  text:String,
+  subText:String,
 }
-export const SelectDetails = ({idTrabajo,setIdLugarTrabajo}:prop) => {
+export const SelectDetails = ({idTrabajo,setIdLugarTrabajo,text,subText}:prop) => {
   const classes = useStyles();
   const [isLoadig, setIsLoadig] = useState(true);
   const [state, setState] = React.useState<{ age: string | number; name: string }>({
@@ -80,7 +82,7 @@ export const SelectDetails = ({idTrabajo,setIdLugarTrabajo}:prop) => {
     <div className={classes.root}>
 
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-helper">Lugar de trabajo</InputLabel>
+        <InputLabel htmlFor="age-native-helper">{text}</InputLabel>
         <NativeSelect
           value={idTrabajo}
           onChange={handleChange}
@@ -99,7 +101,7 @@ export const SelectDetails = ({idTrabajo,setIdLugarTrabajo}:prop) => {
           <option value={30}>Thirty</option> */}
 
         </NativeSelect>
-        <FormHelperText>Selecciona un lugar de trabajo</FormHelperText>
+        <FormHelperText>{subText}</FormHelperText>
       </FormControl>
 
     </div>

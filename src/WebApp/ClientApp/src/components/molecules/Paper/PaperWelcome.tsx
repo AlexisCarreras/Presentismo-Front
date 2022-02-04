@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         backgroundColor: '#FFFF',
         display: 'flex',
         height: '60%',
-        marginTop: '7%',
+        marginTop: '15%',
         width: '85%', 
         marginLeft: '5%',
         marginRight: '5%',
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
          
     },
     divGreeting: {
-        marginTop: '25%',
+        marginTop: '20%',
     },
 });
 

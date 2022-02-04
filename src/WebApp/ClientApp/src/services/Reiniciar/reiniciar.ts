@@ -39,12 +39,12 @@ export default async function Reiniciar( valueLugar : string ) {
       },
       data: {
         header: {
-          consulter: 'acarreras',
+          consulter: 'fruiz',
           date: '2021-12-17 09:00:00',
           messageid: '202111700900009992',
         },
         data: {
-            user: 'acarreras', 
+            user: 'fruiz', 
             hour: fecha(),
             // hour: "2022-01-14 09:45:00",
             idLugarTrabajo: idLugar, //Home= 1, Cliente=2, CDA= 3

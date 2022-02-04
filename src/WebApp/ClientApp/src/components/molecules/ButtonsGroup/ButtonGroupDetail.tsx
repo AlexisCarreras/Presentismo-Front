@@ -56,9 +56,22 @@ interface prop{
   finTemp:Date,
   setInicio:(value:Date)=>void,
   setFin:(value:Date)=>void,
+  setIsDisableInicio:(value:boolean)=>void;
+  setIsDisableFin:(value:boolean)=>void;
 }
 
-export const ButtonGroupDetail = ({inicio,fin,descripcion,lugarTrabajo,setDescripcion,setIdTrabajo,inicioTemp,finTemp,setInicio,setFin}:prop) => {
+export const ButtonGroupDetail = ({inicio,
+  fin,
+  descripcion,
+  lugarTrabajo,
+  setDescripcion,
+  setIdTrabajo,
+  inicioTemp,
+  finTemp,
+  setInicio,
+  setFin,
+  setIsDisableInicio,
+  setIsDisableFin}:prop) => {
   const classes = useStyles();
 
   const onClic = () => {
@@ -73,6 +86,8 @@ export const ButtonGroupDetail = ({inicio,fin,descripcion,lugarTrabajo,setDescri
     setIdTrabajo('');
     setInicio(inicioTemp);
     setFin(finTemp)
+    setIsDisableFin(false)
+    setIsDisableInicio(false)  
   }
 
   return (

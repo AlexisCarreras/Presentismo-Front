@@ -10,6 +10,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { TimerPicker } from '../../molecules/TimerPicker/TimerPicker';
+import { colors } from '@material-ui/core';
+import { TextBox } from '../../atoms/Inputs/TextBox/TextBox';
+import { SelectDetails } from '../../atoms/Select/SelectDetails';
+import { ButtonGroupDetail } from '../../molecules/ButtonsGroup/ButtonGroupDetail';
 
 
 interface data {

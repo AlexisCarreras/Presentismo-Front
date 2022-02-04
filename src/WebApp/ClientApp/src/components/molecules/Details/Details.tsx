@@ -50,7 +50,7 @@ export const Details = () => {
     useEffect(() => {
         async function loadDetails() {
             const response: any = await RegistroDeHoras()
-
+            
             if (response.status === 200) {
                 setRegistroHora(response.data);
                 setLoading(false);

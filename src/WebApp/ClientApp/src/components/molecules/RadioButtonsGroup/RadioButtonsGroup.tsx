@@ -17,6 +17,9 @@ interface props {
     disableRadio: boolean;
     cambie: boolean;
     setCambie: (value: boolean) => void;
+    SetPrimary:(value: boolean) => void;
+    valuePrimaryButton: boolean;
+    
 }
 
 const useStyles = makeStyles({
@@ -30,7 +33,7 @@ const useStyles = makeStyles({
         fontSize: '100%',
         width: '67%',
         justifyContent: 'flex-start ',
-        marginLeft: '2%',
+        marginLeft: '9.2%',
         padding: '3%'
     },
     radioGroup: {
@@ -75,12 +78,12 @@ const PAUSADO = "PAUSADO";
 
 const FINALIZADO = "FINALIZADO";
 
-export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cambie, setCambie }: props) => {
+export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cambie, setCambie,SetPrimary,valuePrimaryButton }: props) => {
 
     const classes = useStyles();
 
     // const { valuesRadioContext } = useContext( RadContext );
-    // const [ disableRadio ] = useState(valuesRadioContext);
+    //  const [ disableRadio ] = useState(valuesRadioContext);
 
     const { valuesRadio, setValuesRadio } = useContext(ValueContext);
 
@@ -103,17 +106,19 @@ export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cam
         console.log((event.target as HTMLInputElement).value);
         setValueLugar((event.target as HTMLInputElement).value);
         setCambie(!cambie);
+        console.log(!cambie);
+        SetPrimary(true);
         if (valuesRadio === true) {     
         
             setValuesRadio(!valuesRadio);
-            console.log(valueLugar); 
+            console.log('value lugar' + valueLugar); 
             
         }
     };
 
     return (
         <div>
-            
+          
             {cargue ? (
                 
                 lugarTrabajo &&
@@ -136,7 +141,7 @@ export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cam
                             <RadioButtonsActivated
                                 key={a.id}
                                 value={a.nombre}
-                                disabled={disableRadio}
+                                disabled={!disableRadio}
 
                             />
                         )

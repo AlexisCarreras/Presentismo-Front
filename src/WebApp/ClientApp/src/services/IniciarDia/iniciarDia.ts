@@ -33,18 +33,19 @@ export default async function IniciarDia( valueLugar : string ) {
       url: 'https://localhost:44323/api/Workday/initial',
       //url: 'https://localhost:5001/api/Workday/CurrentState',
       //url: 'https://presentismocda.herokuapp.com/',
+      //url: 'http://192.168.0.83:8080/Initial'
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
       data: {
         header: {
-          consulter: 'acarreras',
+          consulter: 'fruiz',
           date: '2021-12-17 09:00:00',
           messageid: '202111700900009992',
         },
         data: {
-            user: 'acarreras', 
+            user: 'fruiz', 
             hour: fecha(),
             // hour: "2022-01-14 09:00:00.000",
             idLugarTrabajo: idLugar,

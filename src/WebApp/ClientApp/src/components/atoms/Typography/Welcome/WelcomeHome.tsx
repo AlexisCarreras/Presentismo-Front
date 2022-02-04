@@ -32,19 +32,11 @@ const useStyles = makeStyles({
         height: '20%',
         width: '40%',
         marginLeft : '185%',
-        marginTop : '2%',
+        marginTop : '0%',
         fontFamily:'"Montserrat", sans-serif'
     },
 });
-const fecha = () => {
 
-    const hoy = new Date();
-  
-    const fecha= ('0' + hoy.getDate()).slice(-2) + '/' + ('0' + (hoy.getMonth() + 1)).slice(-2) + '/' + hoy.getFullYear()
-  
-    return fecha;
-  
-  };
 export const WelcomeHome = () => {
 
     const classes = useStyles();
@@ -56,7 +48,7 @@ export const WelcomeHome = () => {
                 className={ classes.fechaText }
                 variant="subtitle1" 
             >
-              {fecha()}
+             
             </Typography>
             </div>
             <Typography 
