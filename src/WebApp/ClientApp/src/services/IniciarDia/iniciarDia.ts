@@ -30,7 +30,8 @@ export default async function IniciarDia( valueLugar : string ) {
 
   try {
     const response = await axios({
-        url: 'https://localhost:44323/api/Workday/initial',
+       // url: 'https://localhost:44323/api/Workday/initial',
+       url: 'http://192.168.0.83:8080/Initial',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

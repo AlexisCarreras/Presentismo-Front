@@ -30,7 +30,8 @@ export default async function PausarDia( valueLugar : string ) {
 
   try {
     const response = await axios({
-        url: 'https://localhost:44323/api/Workday/pause',
+        //url: 'https://localhost:44323/api/Workday/pause',
+        url: 'http://192.168.0.83:8080/pause',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

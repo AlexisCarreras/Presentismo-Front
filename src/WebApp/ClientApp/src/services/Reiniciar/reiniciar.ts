@@ -30,7 +30,8 @@ export default async function Reiniciar( valueLugar : string ) {
 
   try {
     const response = await axios({
-        url: 'https://localhost:44323/api/Workday/restart',
+        url: 'http://localhost:8080/Restart',
+        //url: 'https://localhost:44323/api/Workday/restart',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

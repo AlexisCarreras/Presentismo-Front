@@ -18,7 +18,8 @@ export default async function FinalizarDia() {
 
     try {
       const response = await axios({
-          url: 'https://localhost:44323/api/Workday/finish',
+        //  url: 'https://localhost:44323/api/Workday/finish',
+          url: 'http://192.168.0.83:8080/Finish',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',

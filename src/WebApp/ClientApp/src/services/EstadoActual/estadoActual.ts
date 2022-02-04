@@ -14,8 +14,8 @@ export default async function EstadoActual() {
 
   try {
     const response = await axios({
-      url: 'https://localhost:44323/api/Workday/CurrentState',
-      // url: 'https://presentismocda.herokuapp.com/status',
+      //url: 'https://localhost:44323/api/Workday/CurrentState',
+      url: 'http://192.168.0.83:8080/CurrentState',
       method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',

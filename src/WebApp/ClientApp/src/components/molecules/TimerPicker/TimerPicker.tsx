@@ -36,6 +36,17 @@ const useStyles = makeStyles({
 
     inLine: {
         alignItems: 'center'
+    },
+    combo: {
+        float: 'left'
+    },
+    buttons: {
+        float: 'right'
+    },
+
+    description: {
+
+        paddingLeft: '1.2%',
     }
 })
 
@@ -44,11 +55,11 @@ export const TimerPicker = ({ inicio, fin }: data) => {
 
     const classes = useStyles();
 
-    const [inicioTemp,setInicioTemp]=useState(inicio);
-    const [finTemp,setFinTemp]=useState(inicio);
+    const [inicioTemp, setInicioTemp] = useState(inicio);
+    const [finTemp, setFinTemp] = useState(fin);
 
-    const [lugarDeTrabajo,setLugarDeTrabajo] = useState("");
-    const [descripcion,setDescripcion] = useState("");
+    const [lugarDeTrabajo, setLugarDeTrabajo] = useState("");
+    const [descripcion, setDescripcion] = useState("");
 
     const [isDisableInicio, setIsDisableInicio] = useState(false);
     const [isDisableFin, setIsDisableFin] = useState(false);
@@ -60,8 +71,6 @@ export const TimerPicker = ({ inicio, fin }: data) => {
                 if (date > inicio && date < fin) {
 
                     setInicioTemp(date)
-                    console.log(date);
-                    console.log(inicio);
                     setIsDisableFin(true);
                 } else {
                     setInicioTemp(inicio);
@@ -122,15 +131,35 @@ export const TimerPicker = ({ inicio, fin }: data) => {
                         />
 
                     </Grid>
-                    <TextBox text={descripcion} setText={setDescripcion}/>
-                    <SelectDetails idTrabajo={lugarDeTrabajo} setIdLugarTrabajo={setLugarDeTrabajo} ></SelectDetails>
-                    <ButtonGroupDetail inicio={inicio} fin={fin} descripcion={descripcion} lugarTrabajo={lugarDeTrabajo}
-                     setDescripcion={setDescripcion}
-                     setIdTrabajo={setLugarDeTrabajo}
-                     inicioTemp={inicio}
-                     finTemp={fin}
-                     setInicio={setInicioTemp}
-                     setFin={setFinTemp}></ButtonGroupDetail>
+                    <div className={classes.description}>
+                        <TextBox text={descripcion} setText={setDescripcion} />
+                    </div>
+                    <div>
+                        <div className={classes.combo}>
+                            <SelectDetails idTrabajo={lugarDeTrabajo} setIdLugarTrabajo={setLugarDeTrabajo}
+                                text={'Lugar de trabajo'}
+                                subText={'Seleccione el lugar de trabajo'} ></SelectDetails>
+                        </div>
+                        <div className={classes.combo}>
+                            <SelectDetails idTrabajo={lugarDeTrabajo}
+                                setIdLugarTrabajo={setLugarDeTrabajo}
+                                text={'Cliente/Proyecto'}
+                                subText={'Seleccione el cliente/poryecto'}></SelectDetails>
+                        </div>
+                    </div>
+                    <div>
+                        <div className={classes.buttons}>
+                            <ButtonGroupDetail inicio={inicio} fin={fin} descripcion={descripcion} lugarTrabajo={lugarDeTrabajo}
+                                setDescripcion={setDescripcion}
+                                setIdTrabajo={setLugarDeTrabajo}
+                                inicioTemp={inicio}
+                                finTemp={fin}
+                                setInicio={setInicioTemp}
+                                setFin={setFinTemp}
+                                setIsDisableFin={setIsDisableFin}
+                                setIsDisableInicio={setIsDisableInicio}></ButtonGroupDetail>
+                        </div>
+                    </div>
                 </div>
             </MuiPickersUtilsProvider>
 

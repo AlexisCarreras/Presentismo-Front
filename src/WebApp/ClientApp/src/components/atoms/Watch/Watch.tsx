@@ -6,49 +6,65 @@ import Reloj from '../../atoms/Svg/clock.svg';
 import RelojSecond from '../../atoms/Svg/clockSecon.svg';
 import HorasTrabajadas from '../../../services/HorasTrabajadas/horasTrabajadas';
 import { Height } from '@material-ui/icons';
+import { FenceSharp } from '@mui/icons-material';
 
 interface props {
     time: any;
     setTime: (value: any) => void;
-    loadign:boolean;
+    loadign: boolean;
 }
 
 const useStyles = makeStyles({
     root: {
-        width:                      '100%',
-        alignItems:                 'center',
-        display:                    'flex',
-        justifyContent:             'center',
-        alignContent:               'center',
-        flexFlow:                   'colum wrap',
-        paddingTop:                 '5%',
-        paddingBottom:              '%'
+        width: '100%',
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexFlow: 'colum wrap',
+        paddingTop: '5%',
+        paddingBottom: '0%'
 
     },
 
     textMinutes: {
-        color:                      '#007dc4',
-        margin:                     0,
-        textShadow:                 '1px 1px 3px #BEBEBE',
-        alignItems:                 'center',
-        fontSize:                   '150%',
-        fontFamily:                 '"Montserrat", sans-serif',
-        float:                      'left'
+        color: '#007dc4',
+        margin: 0,
+        textShadow: '1px 1px 3px #BEBEBE',
+        alignItems: 'center',
+        fontSize: '150%',
+        fontFamily: '"Montserrat", sans-serif',
+        float: 'left'
     },
 
     counter: {
-        color:                      '#007DC4',
-        margin:                     0,
-        padding:                    '2%',
-        textShadow:                 '1px 1px 3px #BEBEBE',
-        fontFamily:                 '"Montserrat", sans-serif',
-        textAlign:                  'center'
+        color: '#007DC4',
+        margin: 0,
+        padding: '2%',
+        textShadow: '1px 1px 3px #BEBEBE',
+        fontFamily: '"Montserrat", sans-serif',
+        textAlign: 'center'
     },
 
+    date: {
+        color: '#007DC4',
+        margin: 0,
+        paddingTop: '0%',
+        textShadow: '1px 1px 3px #BEBEBE',
+        fontFamily: '"Montserrat", sans-serif',
+        textAlign: 'center'
+    },
 
 });
+const fecha = () => {
 
-export const Watch = ({ time, setTime, loadign}: props) => {
+    const hoy = new Date();
+
+
+    return hoy.toLocaleDateString("es-ES", { weekday: 'long', day: 'numeric', month: 'long' });
+
+};
+export const Watch = ({ time, setTime, loadign }: props) => {
 
     const classes = useStyles();
 
@@ -77,7 +93,7 @@ export const Watch = ({ time, setTime, loadign}: props) => {
         if (isLoading === true) {
             console.log(time.minutes);
             setTime({ ms: 0, s: 0, m: time.minutes, h: time.hours });
-    
+
         }
         console.log('no entro');
     }, [isLoading]);
@@ -94,7 +110,7 @@ export const Watch = ({ time, setTime, loadign}: props) => {
 
             return (
                 <Typography variant='h1' gutterBottom>
-                    {('0'+time.h).slice(-2)}
+                    {('0' + time.h).slice(-2)}
                 </Typography>
 
             )
@@ -110,11 +126,11 @@ export const Watch = ({ time, setTime, loadign}: props) => {
             )
         }
         else {
-         
+
             return (
                 <Typography variant='h1' gutterBottom>
-                    
-                    {('0'+time.m).slice(-2)}
+
+                    {('0' + time.m).slice(-2)}
                 </Typography>
             )
         }
@@ -122,54 +138,56 @@ export const Watch = ({ time, setTime, loadign}: props) => {
 
     return (
         <section className={classes.root}>
-         {loadign ? (
-             <Skeleton  animation="wave" />
-         ):(
-         <div className={classes.root}>
-            <div className={classes.counter}>
+            {loadign ? (
+                <Skeleton animation="wave" />
+            ) : (
+                <div>
+                    <div className={classes.date}>
+                        <Typography variant="h5" gutterBottom>
+                            {fecha()}
+                        </Typography>
 
-                {horas()}
-                <div className={classes.counter}>
-                    <div>Horas</div>
+                    </div>
+                    <div className={classes.root}>
+                        
+                        <div className={classes.counter}>
 
+                            {horas()}
+
+                        </div>
+                        <div className={classes.counter}>
+
+                            <Typography variant='h1' gutterBottom>
+                                :
+                            </Typography>
+
+                        </div>
+
+                        <div className={classes.counter}>
+
+                            {minutos()}
+
+                        </div>
+                        <div className={classes.counter}>
+
+                            <Typography variant='h1' gutterBottom>
+                                :
+                            </Typography>
+
+                        </div>
+                        <div className={classes.counter}>
+                            <Typography variant="h1" gutterBottom>
+                                {(time.s >= 10) ? time.s : "0" + time.s}
+                            </Typography>
+
+
+                        </div>
+
+                    </div>
+                    
                 </div>
-           </div>
-            <div className={classes.counter}>
-
-                <Typography variant='h1' gutterBottom>
-                    :
-                </Typography>
-                <div className={classes.counter}>
-                    <div>.</div>
-                </div>
-            </div>
-
-            <div className={classes.counter}>
-
-                {minutos()}
-                <div className={classes.counter}>
-                    <div>Minutos</div>
-                </div>
-            </div>
-            <div className={classes.counter}>
-
-                <Typography variant='h1' gutterBottom>
-                    :
-                </Typography>
-                <div className={classes.counter}>
-                    <div>.</div>
-                </div>
-            </div>
-            <div className={classes.counter}>
-                <Typography variant="h1" gutterBottom>
-                    {(time.s >= 10) ? time.s : "0" + time.s}
-                </Typography>
-
-                <div className={classes.counter}>
-                    <div>Segundo</div>
-                </div>
-            </div>
-            </div>)}
-        </section>
+            )
+            }
+        </section >
     )
 }

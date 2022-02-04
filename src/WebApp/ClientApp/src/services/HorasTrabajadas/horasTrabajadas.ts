@@ -14,7 +14,8 @@ export default async function HorasTrabajadas() {
 
     try {
       const response = await axios({
-          url: 'https://localhost:44323/api/Workday/WorkingHours',
+          //url: 'https://localhost:44323/api/Workday/WorkingHours',
+          url: 'http://192.168.0.83:8080/WorkingHours',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',
