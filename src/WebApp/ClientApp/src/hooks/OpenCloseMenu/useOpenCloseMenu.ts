@@ -10,7 +10,7 @@ export const useOpenCloseMenu = () => {
     };
     
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchorEl(null); 
     };
 
     return {

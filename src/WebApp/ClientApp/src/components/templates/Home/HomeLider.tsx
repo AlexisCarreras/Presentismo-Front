@@ -2,8 +2,7 @@ import { DrawerNav       } from '../../organisms/NavBar/DrawerNav';
 import { AppBarHeader    } from '../../organisms/AppBar/AppBarHeader';
 import { Body            } from '../../organisms/Body/Body';
 import { makeStyles      } from '@material-ui/core';
-import { CalendarDetails } from '../../organisms/CalendarDetails/CalendarDetails';
-
+import { CalendarDetailsLider } from '../../organisms/CalendarDetails/CalendarDetailsLider';
 const useStyles = makeStyles({ 
     body: {
         position: 'absolute', 
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const Home = () => {
+export const HomeLider = () => {
 
     const classes = useStyles();
 
@@ -35,7 +34,7 @@ export const Home = () => {
 
             <section className={ classes.body } >
                 <Body            /> 
-                  
+                < CalendarDetailsLider/>     
             </section>
         </div>
     )

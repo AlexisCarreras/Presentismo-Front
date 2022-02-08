@@ -2,7 +2,7 @@ import { DrawerNav       } from '../../organisms/NavBar/DrawerNav';
 import { AppBarHeader    } from '../../organisms/AppBar/AppBarHeader';
 import { Body            } from '../../organisms/Body/Body';
 import { makeStyles      } from '@material-ui/core';
-import { CalendarDetails } from '../../organisms/CalendarDetails/CalendarDetails';
+import { CalendarDetailsAdmin } from '../../organisms/CalendarDetails/CalendarDetailsAdmin';
 
 const useStyles = makeStyles({ 
     body: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const Home = () => {
+export const HomeAdministrativo = () => {
 
     const classes = useStyles();
 
@@ -35,7 +35,7 @@ export const Home = () => {
 
             <section className={ classes.body } >
                 <Body            /> 
-                  
+                < CalendarDetailsAdmin/>   
             </section>
         </div>
     )
