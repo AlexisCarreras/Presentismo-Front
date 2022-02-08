@@ -22,7 +22,8 @@ export default async function FinalizarDia() {
         //url: 'https://localhost:5001/api/Workday/CurrentState',
         //url: 'https://localhost:44323/api/Workday/finish',
         //url: 'https://presentismocda.herokuapp.com/',
-        url: 'http://192.168.0.83:8080/Finish',
+       // url: 'http://192.168.0.83:8080/Finish',
+        url: 'http://localhost:8080/Finish',
         method: 'post',
         headers: {
           'Access-Control-Allow-Origin': '*',
