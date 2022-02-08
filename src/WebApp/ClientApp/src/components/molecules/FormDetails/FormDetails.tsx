@@ -62,7 +62,7 @@ export const FormDetails = () => {
                 localStorage.setItem("token", (JSON.stringify(response.data)));
                 ir();
         }
-
+        debugger
          if (response.status === 401) { 
             setvalorateu (true);
             setvaloratep (true);
@@ -78,8 +78,8 @@ export const FormDetails = () => {
 
     const mequedo = () =>{ 
         ReactDOM.render(
-            <Login />,
-            document.getElementById('root'));
+         <Login />,
+        document.getElementById('root'));
     }
 
     return (
