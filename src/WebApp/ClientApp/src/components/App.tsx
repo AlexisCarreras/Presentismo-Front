@@ -6,7 +6,7 @@ import { Home } from './templates/Home/Home';
 function App() {
 
   return (
-    <ThemeProvider theme= { theme }>
+    <ThemeProvider theme= { theme } >
       {/* <PruebasAtomos /> */}
       <Home />
     </ThemeProvider>

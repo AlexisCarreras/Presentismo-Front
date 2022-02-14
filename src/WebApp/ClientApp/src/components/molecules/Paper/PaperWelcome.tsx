@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         backgroundColor: '#FFFF',
         display: 'flex',
         height: '60%',
-        marginTop: '15%',
+        marginTop: '20%',
         width: '85%', 
         marginLeft: '5%',
         marginRight: '5%',

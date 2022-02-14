@@ -4,26 +4,26 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import { AccordionDetail } from '../../organisms/Accordion/AccordionDetail';
-
+import { AccordionUpdate } from '../../organisms/Accordion/AccordionUpdate';
 import RegistroDeHoras from '../../../services/RegistroDeHoras/registroDeHoras';
 import { Skeleton } from "@material-ui/lab";
+import { getTime, parse } from "date-fns";
 
 const useStyles = makeStyles({
     card: {
-        width: '90%',
+        width: '100%',
         marginTop: '5%',
-        marginRight: '5%',
         marginLeft: '5%',
         // marginRight: '3rem',
         // marginLeft: '1rem',
     },
     skeleton: {
         width: '90%',
-        height:'900px',
+        height: '900px',
         marginTop: '5%',
         marginRight: '5%',
         marginLeft: '5%',
-        
+
     },
     cardHeader: {
         backgroundColor: '#007DC4',
@@ -46,11 +46,12 @@ export const Details = () => {
     const [registroHora, setRegistroHora] = useState<any>(null);
 
     const [isLoading, setLoading] = useState(true);
+   // const [inicio, setInicio] = useState<any>(localStorage.getItem('Inicio'));
 
     useEffect(() => {
         async function loadDetails() {
             const response: any = await RegistroDeHoras()
-            
+
             if (response.status === 200) {
                 setRegistroHora(response.data);
                 setLoading(false);
@@ -66,34 +67,12 @@ export const Details = () => {
     }, [registroHora]);
 
 
-    const fecha = () => {
+    // const fecha = () => {
+    //     setInicio(localStorage.getItem('Inicio'));
+    //     var date = new Date(inicio);
 
-        if (isLoading) {
-            return (
-                <Typography
-                    className={classes.date}
-                    variant='subtitle1'
-                    align='center'
-                >
-                    ...
-                </Typography>
-            )
-        }
-        else {
-
-            const fecha: string = String(registroHora.header.date);
-
-            return (
-                <Typography
-                    className={classes.date}
-                    variant='subtitle1'
-                    align='center'
-                >
-                    {fecha.slice(0, -9)}
-                </Typography>
-            )
-        }
-    }
+    //     return date;
+    // }
 
     return (
         <div >
@@ -101,39 +80,39 @@ export const Details = () => {
                 <div className={classes.skeleton}>
 
                     <Skeleton variant="text" />
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                    <Skeleton variant="rect"/>
-                 
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+                    <Skeleton variant="rect" />
+
                 </div>
             ) : (registroHora &&
                 <Card className={classes.card}>
@@ -142,16 +121,21 @@ export const Details = () => {
                         disableTypography
                         title='Detalles'
                     />
-                    {
+                     <AccordionUpdate
+                     ></AccordionUpdate>
+                    {  
                         registroHora.data.map((a: any) =>
-                            <AccordionDetail
-                                key={a.idRegistro}
-                                id={a.idRegistro}
-                                inicio={a.begin}
-                                fin={a.end}
-                                lugarTrabajo={a.lugarTrabajo}
-                                tipoHora={a.tipoHora}
-                            />
+                            <div>
+                                <AccordionDetail
+                                    key={a.idRegistro}
+                                    id={a.idRegistro}
+                                    inicio={a.begin}
+                                    fin={a.end}
+                                    lugarTrabajo={a.lugarTrabajo}
+                                    tipoHora={a.tipoHora}
+                                 
+                                />
+                            </div>
                         )
                     }
                 </Card>)

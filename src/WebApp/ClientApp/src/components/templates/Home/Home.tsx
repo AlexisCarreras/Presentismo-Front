@@ -1,12 +1,12 @@
-import { DrawerNav       } from '../../organisms/NavBar/DrawerNav';
-import { AppBarHeader    } from '../../organisms/AppBar/AppBarHeader';
-import { Body            } from '../../organisms/Body/Body';
-import { makeStyles      } from '@material-ui/core';
+import { DrawerNav } from '../../organisms/NavBar/DrawerNav';
+import { AppBarHeader } from '../../organisms/AppBar/AppBarHeader';
+import { Body } from '../../organisms/Body/Body';
+import { Grid, makeStyles } from '@material-ui/core';
 import { CalendarDetails } from '../../organisms/CalendarDetails/CalendarDetails';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles({
     body: {
-        position: 'absolute', 
+        position: 'absolute',
         left: '5%',
         zIndex: -1,
         display: 'flex',
@@ -14,12 +14,14 @@ const useStyles = makeStyles({
         height: '93%',
         padding: 0,
         fontFamily: '"Montserrat", sans-serif',
+        backgroundColor: "#F4F4F4",
+
     },
     bodyDiv: {
         fontFamily: '"Montserrat", sans-serif',
         width: '100%',
         height: '100%',
-        
+
     },
 });
 
@@ -28,15 +30,24 @@ export const Home = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.bodyDiv}>
-            <DrawerNav    />
+        <Grid container>
+            <Grid container>
+                <div className={classes.bodyDiv}>
 
-            <AppBarHeader />
+                    <Grid item xs={12}>
+                        <DrawerNav />
 
-            <section className={ classes.body } >
-                <Body            /> 
-                <CalendarDetails />   
-            </section>
-        </div>
+                        <AppBarHeader />
+                    </Grid>
+
+                </div>
+                {/* <Grid item xs={6} className={classes.body}> */}
+                <section className={classes.body} >
+                    <Body />
+                    <CalendarDetails />
+                </section>
+                {/* </Grid> */}
+            </Grid>
+        </Grid>
     )
 }

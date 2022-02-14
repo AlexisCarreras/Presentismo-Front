@@ -12,14 +12,15 @@ import LugarTrabajo from '../../../services/LugarTrabajo/lugarTrabajo';
 import { Skeleton } from '@material-ui/lab';
 
 interface props {
-    valueLugar: string;
-    setValueLugar: (value: string) => void;
+    value: string;
+    setValue: (value: string) => void;
     disableRadio: boolean;
     cambie: boolean;
     setCambie: (value: boolean) => void;
-    SetPrimary:(value: boolean) => void;
+    SetPrimary: (value: boolean) => void;
     valuePrimaryButton: boolean;
-    
+    title: string;
+
 }
 
 const useStyles = makeStyles({
@@ -78,7 +79,7 @@ const PAUSADO = "PAUSADO";
 
 const FINALIZADO = "FINALIZADO";
 
-export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cambie, setCambie,SetPrimary,valuePrimaryButton }: props) => {
+export const RadioButtonsGroup = ({ value, setValue, disableRadio, cambie, setCambie, SetPrimary, valuePrimaryButton, title }: props) => {
 
     const classes = useStyles();
 
@@ -89,13 +90,19 @@ export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cam
 
     const [lugarTrabajo, setLugarTrabajo] = useState<any>(null);
     const [cargue, setCargue] = useState(false);
+    const [data,setData] =useState<any>()
 
     useEffect(() => {
         async function lugarTrabajo() {
             const response: any = await LugarTrabajo()
 
             if (response.status === 200) {
-                setLugarTrabajo(response.data);
+                if(title=='Cliente/Proyecto'){
+                    setData([{id:"1",nombre:'YPF/Testing'},{id:"2",nombre:'Banco Galicia/Testing'},{id:"3",nombre:'Banco Galicia/Producto Nuevo'}])
+                }else{
+                    setData(response.data.data);
+                }
+               
                 setCargue(true);
             }
         }
@@ -103,48 +110,49 @@ export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cam
     }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValueLugar((event.target as HTMLInputElement).value);
+        setValue((event.target as HTMLInputElement).value);
         setCambie(!cambie);
         console.log(!cambie);
         SetPrimary(true);
-        if (valuesRadio === true) {     
-        
+        if (valuesRadio === true) {
+
             setValuesRadio(!valuesRadio);
-            console.log('value lugar' + valueLugar); 
-            
+  
+
         }
     };
 
     return (
         <div>
-          
+
             {cargue ? (
-                
-                lugarTrabajo &&
+
+                data &&
                 <FormControl className={classes.container} component="fieldset">
                     <Typography className={classes.text} variant="body1" >
-                        Lugar de Trabajo:
+                        {title}
                     </Typography>
                     <RadioGroup
                         className={classes.radioGroup}
-                        aria-label="lugarTrabajo"
-                        name="lugarTrabajo"
-                        value={valueLugar}
+                        aria-label={title}
+                        name={title}
+                        value={value}
                         onChange={handleChange}
 
                     >{cargue ? (
 
+                    
+                                data.map((a: any) =>
 
-                        lugarTrabajo.data.map((a: any) =>
+                                    <RadioButtonsActivated
+                                        key={a.id}
+                                        value={a.nombre}
+                                        disabled={!disableRadio}
 
-                            <RadioButtonsActivated
-                                key={a.id}
-                                value={a.nombre}
-                                disabled={!disableRadio}
-
-                            />
-                        )
-                    ) : (
+                                    />
+                                )
+                            
+                        ) : (
                         <Skeleton className={classes.radioGroup} animation="wave" variant='rect' />
                     )}
                     </RadioGroup>
@@ -159,7 +167,7 @@ export const RadioButtonsGroup = ({ valueLugar, setValueLugar, disableRadio, cam
                     <Skeleton animation={false} />
                     <Skeleton animation="wave" />
                     <Skeleton />
-                   
+
                 </div>
             )}
         </div>

@@ -4,102 +4,80 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import LugarTrabajo from '../../../services/LugarTrabajo/lugarTrabajo';
-import { Sync } from '@mui/icons-material';
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 150,
-      fontFamily:'"Montserrat", sans-serif',
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-
-    root: {
-      fontFamily:'"Montserrat", sans-serif',
-    }
+   
+    container: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'left',
+  },
   }),
 );
 interface prop{
-  idTrabajo:String,
-  setIdLugarTrabajo:(value:string)=>void,
+  id:number,
+  setId:(value:number)=>void,
+  setText:(value:string)=>void,
   text:String,
   subText:String,
+  data:any,
 }
-export const SelectDetails = ({idTrabajo,setIdLugarTrabajo,text,subText}:prop) => {
+export const SelectDetails = ({id,setId,text,subText,data,setText}:prop) => {
   const classes = useStyles();
-  const [isLoadig, setIsLoadig] = useState(true);
-  const [state, setState] = React.useState<{ age: string | number; name: string }>({
-    age: '',
-    name: '',
-  });
-
-  const handleChange = (event: React.ChangeEvent<{ name?: string; value: string }>) => {
-    const name = event.target.name as keyof typeof state;
-    setState({
-      ...state,
-      [name]: event.target.value,
-      
-    
-    },);
-    setIdLugarTrabajo(event.target.value)
-  };
-  const [lugarTrabajo, setLugarTrabajo] = useState<any>(null);
-
-  useEffect(() => {
-    async function lugarTrabajo () {
-      const response: any =  await LugarTrabajo()
-      
-      if( response.status === 200 ){
-          setLugarTrabajo(response.data);
-          setIsLoadig(false);
-          
+ // const [isLoadig, setIsLoadig] = useState(true);
+  const handleChange = (event: React.ChangeEvent<{value: string }>) => {
+    setId(+event.target.value);
+            data.map((item: any) => {
+      if (item.id == event.target.value) {
+          console.log(item.nombre)
+          console.log(+event.target.value)
+          setId(item.id)
+          setText(item.nombre);
+         
       }
-  } 
-  lugarTrabajo();
+            });
+
+  };
+  useEffect(() => {
+    
+      data.map((item: any) => {
+      if (item.id == id) {
+      console.log(item.nombre);
+      console.log(item.id);
+          setText(item.nombre);
+          setId(item.id);
+      }
+            });
   }, []);
 
 
   const opciones = () => {
-    if (!isLoadig) {
+
       return (
-        lugarTrabajo.data.map((a: any) =>
+       data.map((a: any) =>
           <option
             key={a.id}
             value={a.id}
           >{a.nombre}</option>
+          
         )
+
       )
-    }
+    
   }
-
-
-
   return (
-    <div className={classes.root}>
-
-      <FormControl className={classes.formControl}>
+    <div className={classes.container}>
+      <FormControl className={classes.container}>
         <InputLabel htmlFor="age-native-helper">{text}</InputLabel>
         <NativeSelect
-          value={idTrabajo}
+          value={id}
           onChange={handleChange}
           required={true}
-          
-          inputProps={{
-            name: 'age',
-            id: 'age-native-helper',
-            
-          }}
-        > <option aria-label="None" value="" />
-          {opciones()}
-          {/* <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option> */}
-
+        > 
+          {opciones()}         
         </NativeSelect>
         <FormHelperText>{subText}</FormHelperText>
       </FormControl>

@@ -10,18 +10,16 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { TimerPicker } from '../../molecules/TimerPicker/TimerPicker';
-import { colors } from '@material-ui/core';
-import { TextBox } from '../../atoms/Inputs/TextBox/TextBox';
-import { SelectDetails } from '../../atoms/Select/SelectDetails';
-import { ButtonGroupDetail } from '../../molecules/ButtonsGroup/ButtonGroupDetail';
+
 
 
 interface data {
-    id: Number;
+    id: string;
     inicio: string;
     fin: string;
     lugarTrabajo: string;
     tipoHora: string;
+
 }
 const fecha = () => {
 
@@ -34,50 +32,69 @@ const fecha = () => {
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        detailsFull:{
+            marginTop:'5%'
+        },
         root: {
             //textAlign:    'center',
+            
             fontFamily: '"Montserrat", sans-serif',
+            width: '95%'
         },
         icon: {
-            color:        '#F6921E',
-            fontSize:     '10px',
-            marginTop:    'auto',
+            color: '#F6921E',
+            fontSize: '10px',
+            marginTop: 'auto',
             marginBottom: 'auto',
             fontFamily: '"Montserrat", sans-serif',
         },
         heading: {
             fontSize: theme.typography.pxToRem(12),
-            flexBasis:     '25%',
-            flexShrink:    0,
+            flexBasis: '25%',
+            flexShrink: 0,
             fontFamily: '"Montserrat", sans-serif',
         },
         headingComplete: {
             fontSize: theme.typography.pxToRem(12),
-            flexBasis:     '25%',
-            flexShrink:    0,
+            flexBasis: '25%',
+            flexShrink: 0,
             fontFamily: '"Montserrat", sans-serif',
         },
         secondaryHeading: {
-            fontSize:     theme.typography.pxToRem(12),
-            flexBasis:    '25%',
-            display:      'flex',
-            color:        theme.palette.text.secondary,
+            fontSize: theme.typography.pxToRem(12),
+            flexBasis: '25%',
+            display: 'flex',
+            color: theme.palette.text.secondary,
             fontFamily: '"Montserrat", sans-serif',
         },
         containerDetails: {
-            fontFamily:'"Montserrat", sans-serif',
-            color:      '#F6921E',
+            fontFamily: '"Montserrat", sans-serif',
+            color: '#F6921E',
         },
         details: {
-            color:      '#F6921E',
+            color: '#F6921E',
             marginLeft: '2rem',
-            fontFamily:'"Montserrat", sans-serif',
+            fontFamily: '"Montserrat", sans-serif',
+        },
+        detailsNull: {
+            color: '#F6921E',
+            marginLeft: '2rem',
+            fontFamily: '"Montserrat", sans-serif',
+            alignItems:'center',
+            width:'100%'
         },
     }),
 );
 
-export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data) => {
-
+export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data) => {
+    const fechas=(fecha:any)=>{
+     
+        const d = new Date(fecha);
+      
+  
+       
+        return  ('0'+(d.getHours())).slice(-2)+':'+('0'+(d.getMinutes())).slice(-2) 
+    }
     const classes = useStyles();
 
     const inicioFin = () => {
@@ -87,7 +104,7 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
             return (
                 <>
                     <Typography className={classes.heading}>
-                        {inicio.substring(16, 11)} -
+                        {fechas(inicio)} -
                     </Typography>
                 </>
             )
@@ -96,18 +113,25 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
 
             return (
                 <Typography className={classes.headingComplete}>
-                    {inicio.substring(16, 11)} - {fin.substring(16, 11)}
+                    {fechas(inicio)+" - "+fechas(fin)}
                 </Typography>
             )
         }
 
     }
     const botton = () => {
+       
         if (fin !== null) {
             return (
                 <div>
-                    <TimerPicker inicio={new Date(inicio)} fin={new Date(fin)} />
+                    <TimerPicker inicio={new Date(inicio)} fin={new Date(fin)} lugar={lugarTrabajo} idRegistro={id}/>
                 </div>
+            )
+        }else{
+            return(
+                <Typography className={classes.detailsNull}>
+                Registro de Hora Abierto
+            </Typography>
             )
         }
     }
@@ -116,33 +140,36 @@ export const AccordionDetail = ({ id,inicio, fin, lugarTrabajo, tipoHora }: data
 
         if (tipoHora === "Productiva") {
             return (
-                <Accordion className={classes.root}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        className={classes.root}
-                    >
-                        <FiberManualRecordIcon className={classes.icon} />
+                // <Grid container className={classes.root}>
+                <div >
+                    <Accordion >
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            className={classes.root}
+                        >
+                            <FiberManualRecordIcon className={classes.icon} />
 
-                        {inicioFin()}
+                            {inicioFin()}
 
-                        <Typography className={classes.secondaryHeading}>
-                            {lugarTrabajo} / YPF
-                        </Typography>
+                            <Typography className={classes.secondaryHeading}>
+                                {lugarTrabajo} / YPF
+                            </Typography>
 
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.containerDetails}>
-                  
-                        {botton()}
-                        
-                    </AccordionDetails>
-                </Accordion>
+                        </AccordionSummary>
+
+                        <AccordionDetails className={classes.detailsNull}>
+
+                            {botton()}
+
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+                // </Grid>
             )
-        }
+        } 
     }
-
-
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Reloj from '../../atoms/Svg/clock.svg';
@@ -137,19 +137,16 @@ export const Watch = ({ time, setTime, loadign }: props) => {
     }
 
     return (
+    <Grid container className={classes.root}>
         <section className={classes.root}>
             {loadign ? (
                 <Skeleton animation="wave" />
             ) : (
-                <div>
-                    <div className={classes.date}>
-                        <Typography variant="h5" gutterBottom>
-                            {fecha()}
-                        </Typography>
 
-                    </div>
+                <div>
+                    
                     <div className={classes.root}>
-                        
+
                         <div className={classes.counter}>
 
                             {horas()}
@@ -184,10 +181,12 @@ export const Watch = ({ time, setTime, loadign }: props) => {
                         </div>
 
                     </div>
-                    
+
                 </div>
+
             )
             }
         </section >
+    </Grid>
     )
 }
