@@ -23,7 +23,7 @@ export const TextBoxUpdate = ({text,setText}:prop) => {
      
         <TextField 
         id="standard-basic" 
-        label="Descripción" 
+        label="Justificación" 
         value={text}
         required
         onChange={handleInputChange}

@@ -113,6 +113,7 @@ export const AccordionUpdate = () => {
     const [horaInicio, setHoraInicio] = useState('')
     const [inicio, setInicio] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'))
     const [fin, setFin] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'))
+    const [inicioTemp,setInicioTemp] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'));
     const [isLoading, setIsLoading] = useState(false);
     const [minutero, setMinutero] = useState<any>()
     const [id,setId] = useState<number>(0);
@@ -159,8 +160,8 @@ export const AccordionUpdate = () => {
     async function modificacion(){
 
         console.log('Descripcion del boto: '+ descripcion);
-
-      const response: any= await  CambioInicio(id,inicio,descripcion);
+        console.log('fecha Inicio change: '+ inicioTemp);
+      const response: any= await  CambioInicio(id,inicioTemp,descripcion);
 
     }
 
@@ -194,7 +195,7 @@ export const AccordionUpdate = () => {
                                 <TimerPickerUpdate
                                     inicio={inicio}
                                     fin={fin}
-                                    setInicio={setInicio}
+                                    setInicio={setInicioTemp}
                                 ></TimerPickerUpdate>
                             </AccordionDetails>
                         <div className={classes.descripcion}>

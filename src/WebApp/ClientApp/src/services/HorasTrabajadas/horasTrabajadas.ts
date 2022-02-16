@@ -4,7 +4,7 @@ const fecha = () => {
 
   const hoy = new Date();
 
-  const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
+  const fecha = hoy.getFullYear() + '-' +  ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + hoy.getDate();
 
   return fecha;
 
@@ -24,12 +24,12 @@ export default async function HorasTrabajadas() {
           header: {
             consulter: 'fruiz',
             date: '2022-01-13 09:00:00',
-            messageid: '202111700900009992',
+            messageId: '202111700900009992',
           },
           data: {
               user:  'fruiz',
-              begin: fecha() + " " + "00:00:00.000" ,
-              end:   fecha() + " " + "23:59:00.000"
+              begin: fecha() + " " + "00:00:00" ,
+              end:   fecha() + " " + "23:59:00"
               // begin: "2022-01-14 00:00:00.000",
               // end: "2022-01-14 23:59:00.000"
           }, 

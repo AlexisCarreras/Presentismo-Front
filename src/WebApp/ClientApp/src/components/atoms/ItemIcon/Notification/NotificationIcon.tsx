@@ -15,7 +15,7 @@ import { useOpenCloseMenu } from '../../../../hooks/OpenCloseMenu/useOpenCloseMe
 
 const useStyles = makeStyles({
   icon: {
-    color: '#007DC4',
+    color: '#fff',
     fontSize: 30,
 
   },

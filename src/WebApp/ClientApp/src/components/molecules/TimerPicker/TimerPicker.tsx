@@ -106,10 +106,13 @@ export const TimerPicker = ({ inicio, fin, lugar, idRegistro }: data) => {
 
     const handleDateChangeInicio = (date: Date | null) => {
         console.log('inicio');
+        console.log(date);
+        console.log(inicio);
+        console.log(fin);
         try {
             if (date !== null) {
-                if (date > inicio && date < fin) {
-
+                if (date > inicio && date<fin) {
+                    console.log('inicio');
                     setInicioTemp(date)
                     setIsDisableFin(true);
                 } else {
@@ -144,13 +147,13 @@ export const TimerPicker = ({ inicio, fin, lugar, idRegistro }: data) => {
     
         setOpen(false);
         setOpenError(false);
-        window.location.replace('');
+        //window.location.replace('');
       };
     async function Update() {
 
         const response: any = await ActualizarRegistro(inicioTemp, finTemp, lugarDeTrabajo, descripcion, idCliente, 'Testing', 1, idCliente, clienteText, idRegistro)
         console.log('respuesta: ' + response);
-        if (response.data=='Hola'){
+        if (response.data.info.code=='200'){
             
             setOpen(true);
         }else{
@@ -221,7 +224,7 @@ export const TimerPicker = ({ inicio, fin, lugar, idRegistro }: data) => {
                                                 setText={setClienteText}
                                                 text={''}
                                                 subText={'Cliente/Proyecto'}
-                                                data={[{ id: "1", nombre: 'YPF' }, { id: "2", nombre: 'Banco Galicia' }, { id: "3", nombre: 'Telecom' }, { id: "4", nombre: 'CDA' }]}></SelectDetails>
+                                                data={[{ id: "1", nombre: 'YPF' }, { id: "2", nombre: 'CDA' }, { id: "3", nombre: 'Banco Galicia' }, { id: "4", nombre: 'Telecom' }]}></SelectDetails>
                                         </div>
                                     </div>
                                     <div>

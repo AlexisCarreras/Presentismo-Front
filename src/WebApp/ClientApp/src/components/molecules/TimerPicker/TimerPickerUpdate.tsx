@@ -73,6 +73,7 @@ export const TimerPickerUpdate = ({ inicio, fin,setInicio }: data) => {
 
                     setInicioTemp(date);
                     setInicio(date);
+                    
                 } else {
                     setInicio(inicio);
                     setInicioTemp(inicio);

@@ -3,6 +3,7 @@ import { AppBarHeader } from '../../organisms/AppBar/AppBarHeader';
 import { Body } from '../../organisms/Body/Body';
 import { Grid, makeStyles } from '@material-ui/core';
 import { CalendarDetails } from '../../organisms/CalendarDetails/CalendarDetails';
+import { LeaderScreen } from '../../organisms/LeaderScreen/LeaderScreen';
 
 const useStyles = makeStyles({
     body: {
@@ -45,6 +46,7 @@ export const Home = () => {
                 <section className={classes.body} >
                     <Body />
                     <CalendarDetails />
+                    {/* <LeaderScreen></LeaderScreen> */}
                 </section>
                 {/* </Grid> */}
             </Grid>

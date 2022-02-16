@@ -1,4 +1,5 @@
 
+import { ConstructionOutlined } from '@mui/icons-material';
 import axios from 'axios'; 
 
 const fecha = () => {
@@ -8,6 +9,19 @@ const fecha = () => {
     const fecha = hoy.getFullYear() + '-' +  ('0' + (hoy.getMonth()+1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2);
   
     return fecha;
+  
+  };
+  const fechas = (d:Date) => {
+
+   
+  
+    const fecha = d.getFullYear() + '-' + ("0" +(d.getMonth() + 1)).slice(-2) + '-' + d.getDate();
+  
+    const hora  =  ("0" + (d.getHours())).slice(-2)+':'+("0" + (d.getMinutes())).slice(-2) +':'+ ("0" + (d.getSeconds())).slice(-2)+'.'+ d.getMilliseconds();
+  
+    console.log( "Cambio de hora: " + fecha + ' ' + hora );
+  
+    return fecha + ' ' + hora;
   
   };
 
@@ -20,7 +34,8 @@ const fecha = () => {
     return fecha;
   }
 export default async function CabioInicio(idRegistro:number,beginChange:Date,justification:string) {
-console.log('Descripcion del servicio:' + justification);
+console.log('Descripcion del servicio      :' + justification);
+console.log('Hora del servicoi inicio change: ' + beginChange );
   try {
     const response = await axios({
       //url: 'https://localhost:44323/api/Workday/CurrentState',
@@ -36,8 +51,8 @@ console.log('Descripcion del servicio:' + justification);
           messageid: idMensagge(),
         },
         data: {
-            idRegistro: idRegistro, 
-            beginChange:beginChange,
+            registroId: idRegistro, 
+            beginChange:fechas(beginChange),
             justification:justification,
           },
         info: {

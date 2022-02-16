@@ -4,7 +4,7 @@ const fecha = () => {
 
     const hoy = new Date();
   
-    const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
+    const fecha = hoy.getFullYear() + '-' +( '0' + (hoy.getMonth() + 1)).slice(-2) + '-' + hoy.getDate();
   
     return fecha;
   

@@ -2,6 +2,7 @@ import { makeStyles       } from '@material-ui/core';
 import List                 from '@material-ui/core/List';
 import { ItemIconHome     } from '../../atoms/ItemIcon/Home/ItemIconHome';
 import { ItemIconHours    } from '../../atoms/ItemIcon/Hours/ItemIconHours';
+import { NotificationIcon } from '../../atoms/ItemIcon/Notification/NotificationIcon';
 import { ItemIconRequests } from '../../atoms/ItemIcon/Requests/ItemIconRequests';
 
 const useStyles = makeStyles({
@@ -20,6 +21,7 @@ export const ListItemsIcons = () => {
             <ItemIconHome     /> 
             <ItemIconHours    />
             <ItemIconRequests />
+            <NotificationIcon/>
         </List>
     )
 }

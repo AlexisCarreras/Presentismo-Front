@@ -10,6 +10,19 @@ const fecha = () => {
     return fecha;
   
   };
+  const fechas = (d:any) => {
+
+    const hoy = new Date(d);
+  
+    const fecha = hoy.getFullYear() + '-' +  (hoy.getMonth() + 1) + '-' + hoy.getDate();
+  
+    const hora  = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds() + '.' + hoy.getMilliseconds();
+  
+    console.log( "Finalizar: " + fecha + ' ' + hora );
+  
+    return fecha + ' ' + hora;
+  
+  };
 
   const idMensagge = () => {
     const hoy = new Date();
@@ -40,15 +53,15 @@ idRegistro:String) {
         },
         data: {
           registroId: idRegistro,
-          begin: inicio,
-          end: fin,
+          begin: fechas(inicio),
+          end: fechas(fin),
           idLugarTrabajo: idLugar,
-          idProyecto: idProyecto,
-          proyectoText: proyectoText,
-          idTipoHora: idTipoHora,
+          idProyecto: 1,
+         // proyectoText: proyectoText,
+          idTipoHora: "1",
           user: 'fruiz', 
           idCliente: idCliente,
-          clienteText: clienteText,
+          //clienteText: clienteText,
           txt: Descripcion,
           },
         info: {
