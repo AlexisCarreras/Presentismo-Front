@@ -72,7 +72,7 @@ export const ItemsHeader = () => {
                 />
             </section>
             <section className={ classes.section2 } >
-                <NotificationIcon  />
+           
           
                 <NameHeader    name= { saludo()  } />
              

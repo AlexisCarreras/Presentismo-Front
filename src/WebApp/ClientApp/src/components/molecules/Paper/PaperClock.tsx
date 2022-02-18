@@ -172,8 +172,9 @@ export const PaperClock = () => {
     const [time, setTime] = useState<any>({ ms: 0, s: 0, m: 0, h: 0 });
     const [interv, setInterv] = useState<any>();
     const [horasTrabajadas, setHorasTrabajadas] = useState<any>(null);
-    const [open, setOpen] = useState(false);
+   
     const [openError, setOpenError] = useState(false);
+    const [open, setOpen] = useState(false);
     const [mensaje, setMensaje] = useState('');
     const [hora, setHora] = useState<Date>(new Date());
 

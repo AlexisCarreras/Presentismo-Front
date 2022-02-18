@@ -73,7 +73,7 @@ export const TimerPicker = ({ inicio, fin, lugar, idRegistro }: data) => {
     const [lugarDeTrabajo, setLugarDeTrabajo] = useState(0);
     const [cliente, setCliente] = useState(2);
     const [descripcion, setDescripcion] = useState("");
-    const [isDisableInicio, setIsDisableInicio] = useState(false);
+    const [isDisableInicio, setIsDisableInicio] = useState(true);
     const [isDisableFin, setIsDisableFin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [lugarTrabajo, setLugarTrabajo] = useState<any>(null);

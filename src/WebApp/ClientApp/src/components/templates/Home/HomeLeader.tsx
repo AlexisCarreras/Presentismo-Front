@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const Home = () => {
+export const HomeLeader = () => {
 
     const classes = useStyles();
 
@@ -43,12 +43,10 @@ export const Home = () => {
 
                 </div>
                 {/* <Grid item xs={6} className={classes.body}> */}
-                <section className={classes.body} id={'root'} >
-                    <Body />
-                    <CalendarDetails />
-                   
+                <section className={classes.body} id={'leader'} >
+                    <LeaderScreen></LeaderScreen>
                 </section>
-               
+                {/* </Grid> */}
             </Grid>
         </Grid>
     )

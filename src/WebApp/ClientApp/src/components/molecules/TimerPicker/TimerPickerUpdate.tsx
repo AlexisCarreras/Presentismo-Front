@@ -66,20 +66,23 @@ export const TimerPickerUpdate = ({ inicio, fin,setInicio }: data) => {
     const [inicioTemp, setInicioTemp] = useState(inicio);
     const [descripcion, setDescripcion] = useState('');
     const handleDateChangeInicio = (date: Date | null) => {
-        console.log('inicio' + date);
+       const now = new Date();
         try {
             if (date !== null) {
-                if (date < fin) {
-
+                if (date < now ) {
+                    console.log('inicio' + date);
                     setInicioTemp(date);
                     setInicio(date);
                     
                 } else {
+
+                    console.log('else' + date);
                     setInicio(inicio);
                     setInicioTemp(inicio);
                 }
             }
         } catch {
+            console.log('cath' + date);
             setInicioTemp(inicio);
             setInicio(inicio);
         }

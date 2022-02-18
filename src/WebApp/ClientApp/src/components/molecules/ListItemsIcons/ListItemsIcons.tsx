@@ -21,7 +21,7 @@ export const ListItemsIcons = () => {
             <ItemIconHome     /> 
             <ItemIconHours    />
             <ItemIconRequests />
-            <NotificationIcon/>
+        
         </List>
     )
 }

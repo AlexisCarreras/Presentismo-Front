@@ -6,6 +6,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ApprovalTable from '../../atoms/LeaderTable/ApprovalTable';
+import FinishedTable from '../../atoms/LeaderTable/FinishedTable';
+import AceptedTable from '../../atoms/LeaderTable/AceptedTable';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -63,7 +66,8 @@ export default function SimpleTabs() {
       <AppBar position="static">
         <Tabs className={classes.barra} value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Solicitudes pendientes " {...a11yProps(0)} />
-          <Tab label="Solicitudes finalizadas" {...a11yProps(1)} />
+          <Tab label="Solicitudes rechazadas" {...a11yProps(1)} />
+          <Tab label="Solicitudes aceptadas" {...a11yProps(2)} />
       
         </Tabs>
       </AppBar>
@@ -71,10 +75,10 @@ export default function SimpleTabs() {
       <ApprovalTable></ApprovalTable>
       </TabPanel>
       <TabPanel value={value} index={1}>
- 
+      <FinishedTable></FinishedTable>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+       <AceptedTable></AceptedTable>
       </TabPanel>
     </div>
   );

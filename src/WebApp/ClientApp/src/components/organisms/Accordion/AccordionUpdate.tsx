@@ -14,9 +14,10 @@ import { TextBox } from '../../atoms/Inputs/TextBox/TextBox';
 import { useEffect, useState } from 'react';
 import { TextBoxUpdate } from '../../atoms/Inputs/TextBox/TextBoxUpdate';
 import { ButtonDetails } from '../../atoms/Buttons/Details/ButtonDetails';
-import { Grid } from '@material-ui/core';
+import { Grid, Snackbar } from '@material-ui/core';
 import RegistroDeHoras from '../../../services/RegistroDeHoras/registroDeHoras';
 import CambioInicio from '../../../services/CambioInicio/CambioInicio';
+import { Alert } from '@mui/material';
 
 
 
@@ -37,18 +38,18 @@ const fecha = () => {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
 
-        minutero:{
-            float:'left',
+        minutero: {
+            float: 'left',
         },
-        descripcion:{
-            float:'left',
-            marginTop:'4%'
+        descripcion: {
+            float: 'left',
+            marginTop: '4%'
         },
-        boton:{
-            marginTop:'2%',
-            marginRight:'2%',
-            marginBottom:'2%',
-            float:'right',
+        boton: {
+            marginTop: '2%',
+            marginRight: '2%',
+            marginBottom: '2%',
+            float: 'right',
             backgroundColor: '#007DC4',
             color: '#FFFFFF',
             borderTopLeftRadius: 5,
@@ -81,6 +82,14 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: '26%',
             fontFamily: '"Montserrat", sans-serif',
         },
+        warning: {
+            fontSize: theme.typography.pxToRem(18),
+            backgroundColor: '#fff',
+            color: "#F6921E",
+            //   color: theme.palette.text.secondary,
+            marginLeft: '26%',
+            fontFamily: '"Montserrat", sans-serif',
+        },
 
 
         detailsNull: {
@@ -91,7 +100,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '50%'
         },
         buttonStyleGuardar: {
-           
+
         },
         description: {
             paddingLeft: '5%',
@@ -112,11 +121,15 @@ export const AccordionUpdate = () => {
     const [descripcion, setDescripcion] = useState('')
     const [horaInicio, setHoraInicio] = useState('')
     const [inicio, setInicio] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'))
-    const [fin, setFin] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'))
-    const [inicioTemp,setInicioTemp] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'));
+    const [fin, setFin] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'));
+    const [inicioTemp, setInicioTemp] = useState<Date>(new Date('2022-02-11T12:00:00.700+00:00'));
     const [isLoading, setIsLoading] = useState(false);
     const [minutero, setMinutero] = useState<any>()
-    const [id,setId] = useState<number>(0);
+    const [pendiente, setPendiente] = useState('');
+    const [id, setId] = useState<number>(0);
+    const [open, setOpen] = useState(false);
+    const [mensaje, setMensaje] = useState('');
+    const [openError, setOpenError] = useState(false);
 
     useEffect(() => {
         async function PrimerRegistro() {
@@ -126,9 +139,11 @@ export const AccordionUpdate = () => {
                 if (responseRegistros.status == 200) {
                     console.log('Entre al primer registro')
                     const d = new Date(responseRegistros.data.data[0].begin);
+                    const f =new Date(responseRegistros.data.data[0].end);
                     setId(responseRegistros.data.data[0].idRegistro);
+                    setPendiente(responseRegistros.data.data[0].estadoRegistro);
                     setInicio(d);
-                    setFin(d);
+                    setFin(f);
                     setHoraInicio(('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2) + 'Hs');
                     setIsLoading(true)
                 }
@@ -157,13 +172,56 @@ export const AccordionUpdate = () => {
 
 
 
-    async function modificacion(){
+    async function modificacion() {
 
-        console.log('Descripcion del boto: '+ descripcion);
-        console.log('fecha Inicio change: '+ inicioTemp);
-      const response: any= await  CambioInicio(id,inicioTemp,descripcion);
+        console.log('Descripcion del boto: ' + descripcion);
+        console.log('fecha Inicio change: ' + inicioTemp);
+        const response: any = await CambioInicio(id, inicioTemp, descripcion);
+
+        if(response.data.info.code=='200'){
+           setMensaje('Solicitudo enviada al su lider');
+        }else{
+            setMensaje('Error de envio');
+        }
 
     }
+    const isPendiente = () => {
+        console.log('estado: ' + pendiente);
+        if (pendiente == 'Pendiente' || pendiente=='Aceptado' || pendiente == 'Rechazado') {
+            return (
+                <AccordionDetails className={classes.warning} >
+                <Typography>
+                    Ya tiene un pedido de campio de inicio
+                </Typography>
+                </AccordionDetails>
+            )
+            
+            
+        } else {
+            return (
+                <div>
+
+                    <AccordionDetails className={classes.minutero} >
+                        <TimerPickerUpdate
+                            inicio={inicio}
+                            fin={fin}
+                            setInicio={setInicioTemp}
+                        ></TimerPickerUpdate>
+                    </AccordionDetails>
+                    <div className={classes.descripcion}>
+                        <TextBoxUpdate text={descripcion} setText={setDescripcion} />
+                    </div>
+                    <ButtonDetails
+                        estilo={classes.boton}
+                        text={'Solicitar Cambio'}
+                        disabled={false}
+                        onClick={modificacion}
+                    ></ButtonDetails>
+                </div>
+            )
+        }
+    }
+
 
     const detalleInicio = () => {
 
@@ -189,34 +247,10 @@ export const AccordionUpdate = () => {
                     </AccordionSummary>
 
                     {isLoading ? (
-                        <div>
-
-                            <AccordionDetails className={classes.minutero} >
-                                <TimerPickerUpdate
-                                    inicio={inicio}
-                                    fin={fin}
-                                    setInicio={setInicioTemp}
-                                ></TimerPickerUpdate>
-                            </AccordionDetails>
-                        <div className={classes.descripcion}>
-                            <TextBoxUpdate  text={descripcion} setText={setDescripcion} />
-                            </div>
-                            <ButtonDetails
-                                estilo={classes.boton}
-                                text={'Solicitar Cambio'}
-                                disabled={false}
-                                onClick={modificacion}
-                            ></ButtonDetails>
-                        </div>
+                        isPendiente()
                     ) : (
                         null
                     )}
-
-
-
-
-
-
 
                 </Accordion>
 
@@ -224,15 +258,20 @@ export const AccordionUpdate = () => {
 
 
             </div>
+            
 
         )
     }
 
-
+    const handleClose = () => {
+        setOpen(false);
+        setOpenError(false);
+    };
 
     return (
         <>
             {detalleInicio()}
+           
         </>
     )
 }

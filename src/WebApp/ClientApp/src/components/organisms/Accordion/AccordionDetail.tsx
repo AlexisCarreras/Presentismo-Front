@@ -10,7 +10,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { TimerPicker } from '../../molecules/TimerPicker/TimerPicker';
-
+import WarningIcon from '@material-ui/icons/Warning';
+import { Security } from '@material-ui/icons';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 
 
 interface data {
@@ -19,6 +22,8 @@ interface data {
     fin: string;
     lugarTrabajo: string;
     tipoHora: string;
+    estado: string;
+    cliente:string;
 
 }
 const fecha = () => {
@@ -32,12 +37,37 @@ const fecha = () => {
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        detailsFull:{
-            marginTop:'5%'
+        iconW: {
+            marginLeft: '45%',
+            marginTop: 'auto',
+            color:'#F6921E'
+        },
+        iconE: {
+            marginLeft: '45%',
+            marginTop: 'auto',
+            color:'#ff0000'
+        },
+        iconA: {
+            marginLeft: '45%',
+            marginTop: 'auto',
+            color:'#54cf00'
+        },
+        textIcon:{
+            marginLeft: '35%',
+            marginTop: 'auto',
+            
+            height:'100%',
+            fontSize: theme.typography.pxToRem(10),
+            color: theme.palette.text.secondary,
+            fontFamily: '"Montserrat", sans-serif',
+
+        },
+        detailsFull: {
+            marginTop: '5%'
         },
         root: {
             //textAlign:    'center',
-            
+
             fontFamily: '"Montserrat", sans-serif',
             width: '95%'
         },
@@ -47,12 +77,14 @@ const useStyles = makeStyles((theme: Theme) =>
             marginTop: 'auto',
             marginBottom: 'auto',
             fontFamily: '"Montserrat", sans-serif',
+            padding: '2px'
         },
         heading: {
             fontSize: theme.typography.pxToRem(12),
             flexBasis: '25%',
             flexShrink: 0,
             fontFamily: '"Montserrat", sans-serif',
+
         },
         headingComplete: {
             fontSize: theme.typography.pxToRem(12),
@@ -66,6 +98,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             color: theme.palette.text.secondary,
             fontFamily: '"Montserrat", sans-serif',
+
         },
         containerDetails: {
             fontFamily: '"Montserrat", sans-serif',
@@ -80,20 +113,20 @@ const useStyles = makeStyles((theme: Theme) =>
             color: '#F6921E',
             marginLeft: '2rem',
             fontFamily: '"Montserrat", sans-serif',
-            alignItems:'center',
-            width:'100%'
+            alignItems: 'center',
+            width: '100%'
         },
     }),
 );
 
-export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data) => {
-    const fechas=(fecha:any)=>{
-     
+export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora, estado, cliente }: data) => {
+    const fechas = (fecha: any) => {
+
         const d = new Date(fecha);
-      
-  
-       
-        return  ('0'+(d.getHours())).slice(-2)+':'+('0'+(d.getMinutes())).slice(-2) 
+
+
+
+        return ('0' + (d.getHours())).slice(-2) + ':' + ('0' + (d.getMinutes())).slice(-2)
     }
     const classes = useStyles();
 
@@ -113,26 +146,75 @@ export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data
 
             return (
                 <Typography className={classes.headingComplete}>
-                    {fechas(inicio)+" - "+fechas(fin)}
+                    {fechas(inicio) + " - " + fechas(fin)}
                 </Typography>
             )
         }
 
     }
     const botton = () => {
-       
+
         if (fin !== null) {
             return (
                 <div>
-                    <TimerPicker inicio={new Date(inicio)} fin={new Date(fin)} lugar={lugarTrabajo} idRegistro={id}/>
+                    <TimerPicker inicio={new Date(inicio)} fin={new Date(fin)} lugar={lugarTrabajo} idRegistro={id} />
                 </div>
             )
-        }else{
+        } else {
+            return (
+
+                <Typography className={classes.detailsNull}>
+                    Registro de Hora Abierto
+                </Typography>
+            )
+        }
+    }
+
+    const clienteText=()=>{
+
+        if(cliente=="1"){
             return(
                 <Typography className={classes.detailsNull}>
-                Registro de Hora Abierto
+                YPF
             </Typography>
             )
+        }else if(cliente=='2'){
+            <Typography className={classes.detailsNull}>
+            CDA
+        </Typography>
+        }else if(cliente=="3"){
+            <Typography className={classes.detailsNull}>
+            Banco Galicia
+        </Typography>
+        }else if(cliente=="4"){
+            <Typography className={classes.detailsNull}>
+          Telecom
+        </Typography>
+        }
+
+    }
+
+    const pendiente = () => {
+        if (estado == 'Pendiente') {
+            return (<>
+                {/* <Typography className={classes.textIcon}>
+                    Solicitud de cambio de inicio pendiente
+                </Typography> */}
+                <WarningIcon className={classes.iconW} ></WarningIcon>
+            </>
+            );
+        }else if(estado=='Aceptado'){
+            return (<>
+              
+                <CheckCircleIcon className={classes.iconA} ></CheckCircleIcon>
+            </>
+            );     
+        }else if(estado=='Rechazado'){
+            return (<>
+              
+                <ErrorIcon className={classes.iconE} ></ErrorIcon>
+            </>
+            );     
         }
     }
 
@@ -156,7 +238,7 @@ export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data
                             <Typography className={classes.secondaryHeading}>
                                 {lugarTrabajo} / YPF
                             </Typography>
-
+                            {pendiente()}
                         </AccordionSummary>
 
                         <AccordionDetails className={classes.detailsNull}>
@@ -168,7 +250,7 @@ export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data
                 </div>
                 // </Grid>
             )
-        } 
+        }
     }
 
     return (
@@ -177,3 +259,7 @@ export const AccordionDetail = ({ id, inicio, fin, lugarTrabajo, tipoHora}: data
         </>
     )
 }
+function elseif(arg0: boolean) {
+    throw new Error('Function not implemented.');
+}
+

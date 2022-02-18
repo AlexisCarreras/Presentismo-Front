@@ -133,7 +133,8 @@ export const Details = () => {
                                     fin={a.end}
                                     lugarTrabajo={a.lugarTrabajo}
                                     tipoHora={a.tipoHora}
-                                 
+                                    estado={a.estadoRegistro}
+                                    cliente={a.idCliente}
                                 />
                             </div>
                         )

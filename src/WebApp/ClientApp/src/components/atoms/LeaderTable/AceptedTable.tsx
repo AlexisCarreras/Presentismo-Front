@@ -7,10 +7,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import RegistroDeHoras from '../../../services/RegistroDeHoras/registroDeHoras';
+
 import { Skeleton } from '@material-ui/lab';
-import { ButtonDetails } from '../Buttons/Details/ButtonDetails';
-import Pendiente from '../../../services/Pendiente/pendiente';
+
+import aceptadas from '../../../services/Pendiente/aceptadas';
 
 const StyledTableCell = withStyles((theme: Theme) =>
     createStyles({
@@ -60,7 +60,7 @@ export default function CustomizedTables() {
 
 
         async function loadDetails() {
-            const response: any = await Pendiente()
+            const response: any = await aceptadas()
             try {
 
                 if (response.status === 200) {
@@ -110,15 +110,7 @@ export default function CustomizedTables() {
                     <StyledTableCell align="center">{fechas(row.begin) + ' Hrs'}</StyledTableCell>
                     <StyledTableCell align="center">{fechas(row.beginChange)}</StyledTableCell>
                     <StyledTableCell align="center">{row.justification}</StyledTableCell>
-                    <StyledTableCell align="center"><ButtonDetails
-                        estilo={classes.button}
-                        text={'Aprobar'}
-                        disabled={false}
-                        onClick={() => { }}></ButtonDetails><ButtonDetails
-                            estilo={classes.button}
-                            text={'Rechazar'}
-                            disabled={false}
-                            onClick={() => { }}></ButtonDetails></StyledTableCell>
+                  
                 </StyledTableRow>
 
             )
@@ -146,7 +138,7 @@ export default function CustomizedTables() {
                                 <StyledTableCell align="center">Hora de inicio</StyledTableCell>
                                 <StyledTableCell align="center">Hora de inicio a aporvar</StyledTableCell>
                                 <StyledTableCell align="center">Justificación</StyledTableCell>
-                                <StyledTableCell align="center">Acción</StyledTableCell>
+                       
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -156,5 +148,4 @@ export default function CustomizedTables() {
                 </TableContainer>)}
         </>
     );
-
 }
